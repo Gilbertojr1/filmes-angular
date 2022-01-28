@@ -9,7 +9,7 @@ import { delay, first, tap } from 'rxjs';
 })
 export class FilmesService {
 
-  private readonly API = '/assets/filmes.json';
+  private readonly API = '/api/filmes';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -17,7 +17,7 @@ export class FilmesService {
     return this.httpClient.get<Filmes[]>(this.API)
     .pipe(
       first(),
-      delay(5000),
+      delay(500),
       tap(filmes => console.log(filmes))
     );
   }

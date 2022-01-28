@@ -1,10 +1,10 @@
 export interface Filmes {
   _id: string;
   nome: string;
-  data_lancamento: string;
+  data_lancamento: Date;
   diretor: string;
   duracao: number;
   sinopse: string;
-  estudio: string;
-  categoria: string;
+  estudio: object;
+  categoria: object;
 }
