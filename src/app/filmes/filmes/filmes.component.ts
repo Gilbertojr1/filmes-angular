@@ -14,7 +14,7 @@ import { FilmesService } from './../services/filmes.service';
 export class FilmesComponent implements OnInit {
 
   filmes$: Observable<Filmes[]>;
-  displayedColumns = ['nome', 'data_lancamento', 'diretor', 'duracao', 'sinopse', 'estudio', 'categoria'];
+  displayedColumns = ['id', 'nome', 'data_lancamento', 'diretor', 'duracao', 'sinopse', 'estudio', 'categoria'];
 
   //filmesService: FilmesService;
 

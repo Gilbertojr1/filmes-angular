@@ -2,6 +2,14 @@ table {
   width: 100%;
 }
 
+.example-card {
+  max-width: 400px;
+}
+
+mat-grid-tile {
+  background: lightblue;
+}
+
 .loading-spinner{
   padding: 25px;
   background: rgba(0, 0, 0, 0.15);

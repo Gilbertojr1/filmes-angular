@@ -1,5 +1,5 @@
 export interface Filmes {
-  _id: string;
+  id: string;
   nome: string;
   data_lancamento: Date;
   diretor: string;
