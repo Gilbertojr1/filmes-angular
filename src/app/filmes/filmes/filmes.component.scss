@@ -2,12 +2,12 @@ table {
   width: 100%;
 }
 
-.example-card {
-  max-width: 400px;
-}
-
 mat-grid-tile {
   background: lightblue;
+}
+
+.card{
+  margin: 10px;
 }
 
 .loading-spinner{
