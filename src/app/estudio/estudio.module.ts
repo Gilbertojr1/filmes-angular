@@ -1,21 +1,21 @@
-import { CommonModule } from '@angular/common';
+import { EstudioComponent } from './estudio/estudio.component';
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
+import { EstudioRoutingModule } from './estudio-routing.module';
 import { AppMaterialModule } from '../shared/app-material/app-material.module';
 import { SharedModule } from '../shared/shared.module';
-import { CategoriaRoutingModule } from './categoria-routing.module';
-import { CategoriaComponent } from './categoria/categoria.component';
 
 
 @NgModule({
   declarations: [
-    CategoriaComponent
+    EstudioComponent
   ],
   imports: [
     CommonModule,
-    CategoriaRoutingModule,
+    EstudioRoutingModule,
     AppMaterialModule,
     SharedModule,
   ]
 })
-export class CategoriaModule { }
+export class EstudioModule { }

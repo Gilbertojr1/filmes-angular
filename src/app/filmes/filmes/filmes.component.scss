@@ -2,10 +2,6 @@ table {
   width: 100%;
 }
 
-mat-grid-tile {
-  background: lightblue;
-}
-
 .card{
   margin: 10px;
 }
@@ -16,4 +12,25 @@ mat-grid-tile {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+:host {
+  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.list {
+  max-width: 550px;
+  margin: auto;
+}
+
+.pags{
+  text-align: center;
+}
+
+li {
+  margin-bottom: 5px;
 }

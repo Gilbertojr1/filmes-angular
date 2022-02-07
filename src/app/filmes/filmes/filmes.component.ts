@@ -1,3 +1,4 @@
+import { DetalhesDialogComponent } from './../../shared/components/detalhes-dialog/detalhes-dialog.component';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { catchError, Observable, of } from 'rxjs';
@@ -13,16 +14,26 @@ import { FilmesService } from './../services/filmes.service';
 })
 export class FilmesComponent implements OnInit {
 
+  public labels: any = {
+    previousLabel: 'Voltar',
+    nextLabel: 'Próximo'
+  };
+
+  openDialog() {
+    this.dialog.open(DetalhesDialogComponent);
+  }
+
+  p : number = 1;
+  pageChanged(event: any){console.log("pageChanged")}
+
   filmes$: Observable<Filmes[]>;
   displayedColumns = ['id', 'nome', 'data_lancamento', 'diretor', 'duracao', 'sinopse', 'estudio', 'categoria'];
-
-  //filmesService: FilmesService;
 
   constructor(
     private filmesService: FilmesService,
     public dialog: MatDialog
     ) {
-    //this.filmesService = new FilmesService();
+
     this.filmes$ = this.filmesService.list()
     .pipe(
       catchError(error => {
@@ -41,5 +52,5 @@ export class FilmesComponent implements OnInit {
   ngOnInit(): void {
 
   }
-
 }
+

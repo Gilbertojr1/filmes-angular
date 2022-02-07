@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   exports: [
@@ -17,7 +18,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatDialogModule,
     MatButtonModule,
     MatIconModule,
-    MatGridListModule
+    MatGridListModule,
+    NgxPaginationModule
   ]
 })
 export class AppMaterialModule { }

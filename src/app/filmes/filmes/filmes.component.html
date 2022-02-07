@@ -41,13 +41,13 @@
       <!-- Estúdio Column -->
       <ng-container matColumnDef="estudio">
         <th mat-header-cell *matHeaderCellDef> Estúdio </th>
-        <td mat-cell *matCellDef="let filme"> {{ filme.estudio }} </td>
+        <td mat-cell *matCellDef="let filme"> {{ filme?.estudio?.nome }} </td>
       </ng-container>
 
       <!-- Categoria Column -->
       <ng-container matColumnDef="categoria">
         <th mat-header-cell *matHeaderCellDef> Categoria </th>
-        <td mat-cell *matCellDef="let filme"> {{ filme.categoria }}
+        <td mat-cell *matCellDef="let filme"> {{ filme?.categoria?.nome }}
           <!--
             <mat-icon aria-hidden="false" aria-label="Categoria do Filme">{{ filme.categoria | categorias}}</mat-icon>
           -->
@@ -66,118 +66,24 @@
   </ng-template>
 </mat-card>
 
-<!--
-
-  <div *ngIf="filmes$ | async as filmes; else loading">
-  <mat-grid-list cols="2" rowHeight="2:1">
-    <mat-grid-tile *ngFor=" let filme of filmes">
-      <mat-card class="example-card">
-        <mat-card-title>{{ filme.nome }}</mat-card-title>
-        <mat-card-subtitle>Diretor: {{ filme.diretor }} <br>
-          Data de Lançamento: {{ filme.data_lancamento }}
-          Duração: {{ filme.duracao }} min
-        </mat-card-subtitle>
-        <mat-card-content>
-          <p>{{ filme.sinopse }}</p>
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-tile>
-  </mat-grid-list>
-</div>
-
-<section class="container">
-  <div class="row" *ngIf="filmes$ | async as filmes; else loading">
-    <div class="col-sm-6 col-md-4 col-lg-3" *ngFor=" let filme of filmes" class="caption">
-      <mat-card class="card">
-
-        <mat-card-title data-toggle="collapse" data-target="">{{ filme.nome }}</mat-card-title>
-        <mat-card-subtitle>Diretor: {{ filme.diretor }} <br>
-          Data de Lançamento: {{ filme.data_lancamento }}
-          Duração: {{ filme.duracao }} min
-        </mat-card-subtitle>
-
-        <div id="" class="collapse">
-          <mat-card-content>
-            <p>{{ filme.sinopse }}</p>
-          </mat-card-content>
+<div class="container" *ngIf="filmes$ | async as filmes; else loading">
+  <div class="row">
+    <div class="col-md-4 mb-3" *ngFor=" let filme of filmes | paginate: { itemsPerPage: 3, currentPage: p }" >
+        <div class="card h-100">
+            <div class="card-body">
+                <h4 class="card-title">{{ filme.nome }}</h4>
+                <p>Lançamento: {{ filme.data_lancamento | date: 'longDate' : 'pt-BR' }} | {{ filme.duracao }}m</p>
+                <button mat-button (click)="openDialog()">Detalhes</button>
+            </div>
         </div>
-      </mat-card>
     </div>
   </div>
-</section>
-
-<div class="row row-cols-1 row-cols-md-3 g-4">
-  <div class="col">
-    <div class="card h-100">
-      <img
-        src="https://mdbootstrap.com/img/new/standard/city/041.webp"
-        class="card-img-top"
-        alt="..."
-      />
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">
-          This is a longer card with supporting text below as a natural lead-in to
-          additional content. This content is a little bit longer.
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card h-100">
-      <img
-        src="https://mdbootstrap.com/img/new/standard/city/042.webp"
-        class="card-img-top"
-        alt="..."
-      />
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a short card.</p>
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card h-100">
-      <img
-        src="https://mdbootstrap.com/img/new/standard/city/043.webp"
-        class="card-img-top"
-        alt="..."
-      />
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">
-          This is a longer card with supporting text below as a natural lead-in to
-          additional content.
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card h-100">
-      <img
-        src="https://mdbootstrap.com/img/new/standard/city/044.webp"
-        class="card-img-top"
-        alt="..."
-      />
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">
-          This is a longer card with supporting text below as a natural lead-in to
-          additional content. This content is a little bit longer.
-        </p>
-      </div>
-    </div>
+  <div class="pags">
+    <pagination-controls
+    (pageChange)="p = $event"
+    [previousLabel]="labels.previousLabel"
+    [nextLabel]="labels.nextLabel">
+    </pagination-controls>
   </div>
 </div>
 
-<div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title">Special title treatment</h5>
-    <p class="card-text">
-      With supporting text below as a natural lead-in to additional content.
-    </p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div>
-
--->
