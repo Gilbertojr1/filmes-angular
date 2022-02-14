@@ -72,8 +72,8 @@
         <div class="card h-100">
             <div class="card-body">
                 <h4 class="card-title">{{ filme.nome }}</h4>
-                <p>Lançamento: {{ filme.data_lancamento | date: 'longDate' : 'pt-BR' }} | {{ filme.duracao }}m</p>
-                <button mat-button (click)="openDialog()">Detalhes</button>
+                <p>Lançamento: {{ filme.data_lancamento | date: 'longDate' : 'pt-BR' }} | {{ filme.duracao }} m</p>
+                <button mat-button (click)="openDialog(filme)">Detalhes</button>
             </div>
         </div>
     </div>

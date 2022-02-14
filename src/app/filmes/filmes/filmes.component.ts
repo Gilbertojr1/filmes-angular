@@ -1,3 +1,4 @@
+import { Categoria } from './../../categoria/models/categoria';
 import { DetalhesDialogComponent } from './../../shared/components/detalhes-dialog/detalhes-dialog.component';
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
@@ -21,9 +22,12 @@ export class FilmesComponent implements OnInit {
 
   //@Input() nomeFilme: String = '';
 
-  openDialog() {
-    this.dialog.open(DetalhesDialogComponent);
-
+  openDialog(filme: Filmes) {
+    this.dialog.open(DetalhesDialogComponent, {
+      data: {
+        filme: filme
+      }
+    });
   }
 
   p : number = 1;
