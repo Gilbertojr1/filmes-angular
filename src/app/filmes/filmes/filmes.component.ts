@@ -1,5 +1,5 @@
 import { DetalhesDialogComponent } from './../../shared/components/detalhes-dialog/detalhes-dialog.component';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { catchError, Observable, of } from 'rxjs';
 
@@ -19,8 +19,11 @@ export class FilmesComponent implements OnInit {
     nextLabel: 'Próximo'
   };
 
+  //@Input() nomeFilme: String = '';
+
   openDialog() {
     this.dialog.open(DetalhesDialogComponent);
+
   }
 
   p : number = 1;
