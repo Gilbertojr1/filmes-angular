@@ -64,11 +64,11 @@
 <div class="container" *ngIf="filmes$ | async as filmes; else loading">
   <mat-toolbar class="toolbar" >Filmes Disponíveis</mat-toolbar>
   <div class="d-flex flex-wrap">
-    <div class="col mb-3" *ngFor=" let filme of filmes | paginate: { itemsPerPage: 4, currentPage: p }" >
-        <div class="card h-100">
+    <div class="col mb-3" *ngFor=" let filme of filmes | paginate: { itemsPerPage: 6, currentPage: p }" >
+        <div class="card h-100 box">
             <div class="card-body" (click)="openDialog(filme)">
-                <div>
-                  <img class="poster" src="https://i.pinimg.com/originals/a8/6c/28/a86c2875ddd59391b55112a24345c230.png">
+                <div class="poster">
+                  <img src="https://i.pinimg.com/originals/a8/6c/28/a86c2875ddd59391b55112a24345c230.png">
                 </div>
                 <div class="titulo">
                   <h3 class="card-title">{{ filme.nome }}</h3>
