@@ -1,9 +1,8 @@
-import { Categoria } from './../../categoria/models/categoria';
-import { DetalhesDialogComponent } from './../../shared/components/detalhes-dialog/detalhes-dialog.component';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { catchError, Observable, of } from 'rxjs';
 
+import { DetalhesDialogComponent } from './../../shared/components/detalhes-dialog/detalhes-dialog.component';
 import { ErrorDialogComponent } from './../../shared/components/error-dialog/error-dialog.component';
 import { Filmes } from './../models/filmes';
 import { FilmesService } from './../services/filmes.service';
@@ -14,13 +13,10 @@ import { FilmesService } from './../services/filmes.service';
   styleUrls: ['./filmes.component.scss']
 })
 export class FilmesComponent implements OnInit {
-
   public labels: any = {
     previousLabel: 'Voltar',
     nextLabel: 'Próximo'
   };
-
-  //@Input() nomeFilme: String = '';
 
   openDialog(filme: Filmes) {
     this.dialog.open(DetalhesDialogComponent, {

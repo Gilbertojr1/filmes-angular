@@ -1,5 +1,5 @@
 <mat-card>
-  <mat-toolbar color="primary">Filmes Disponíveis</mat-toolbar>
+  <mat-toolbar color="primary">Estúdios</mat-toolbar>
   <div *ngIf="estudio$ | async as estudio; else loading">
     <table mat-table [dataSource]="estudio" class="mat-elevation-z8">
 
@@ -9,7 +9,7 @@
       </ng-container>
 
       <ng-container matColumnDef="nome">
-        <th mat-header-cell *matHeaderCellDef> Filme </th>
+        <th mat-header-cell *matHeaderCellDef> Nome </th>
         <td mat-cell *matCellDef="let estudio"> {{ estudio.nome }} </td>
       </ng-container>
 

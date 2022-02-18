@@ -7,9 +7,9 @@ export class CategoriasPipe implements PipeTransform {
 
   transform(value: string): string {
     switch(value){
-      case 'Animação': return 'auto_fix_high';
+      case 'Animação': return 'date_range';
     }
-    return 'auto_fix_high';
+    return 'date_range';
   }
 
 }

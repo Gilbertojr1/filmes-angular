@@ -26,7 +26,8 @@ registerLocaleData(localePT);
     NgxPaginationModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-  providers: [{ provide: LOCALE_ID, useValue: 'pt-br' }],
+  providers:
+  [{ provide: LOCALE_ID, useValue: 'pt-br' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

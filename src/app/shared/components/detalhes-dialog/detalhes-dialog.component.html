@@ -1,5 +1,25 @@
-<h1 mat-dialog-title>{{ filme?.filme?.nome }}</h1>
-<div mat-dialog-content >{{ filme?.filme?.categoria?.nome }}</div>
-<div mat-dialog-actions>
-  <button  mat-flat-button color="warn" mat-dialog-close>Fechar</button>
+<div class="modal-lg">
+  <figure>
+    <blockquote class="blockquote">
+      <h1 mat-dialog-title>{{ filme?.filme?.nome }}</h1>
+    </blockquote>
+    <!--<mat-icon aria-hidden="false" aria-label="Categoria do Filme">{{ filme.categoria | categorias}}</mat-icon>-->
+    <p>Lançamento: {{ filme?.filme?.data_lancamento | date: 'longDate' : 'pt-BR' }} | {{ filme?.filme?.duracao }} m</p>
+    <figcaption class="blockquote-footer">
+      Diretor(a): <cite title="Source Title">{{ filme?.filme?.diretor }}</cite>
+    </figcaption>
+  </figure>
+
+  <div mat-dialog-content >{{ filme?.filme?.sinopse }}</div>
+
+  <hr>
+
+  <div mat-dialog-content class="btn-group" role="group">
+    <a class="btn btn-light btn-sm" href="#" role="button">{{ filme?.filme?.estudio?.nome }}</a>
+    <a class="btn btn-light btn-sm" href="#" role="button">{{ filme?.filme?.categoria?.nome }}</a>
+  </div>
+
+  <div mat-dialog-actions class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <button class="me-md-2" mat-flat-button color="warn" mat-dialog-close>Fechar</button>
+  </div>
 </div>

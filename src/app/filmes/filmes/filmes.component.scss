@@ -34,3 +34,21 @@ table {
 li {
   margin-bottom: 5px;
 }
+
+.poster{
+  width: 100%;
+  align-items: center;
+  display: flex;
+  border: 10px;
+}
+
+.toolbar{
+  margin-top: 20px;
+}
+
+.titulo{
+  margin-top: 20px;
+  text-align: center;
+  justify-content: center;
+  font-size: 18px;
+}

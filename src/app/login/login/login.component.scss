@@ -1,0 +1,32 @@
+.card {
+  max-width: 450px;
+  margin-top: 50px;
+}
+
+.titulo{
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.right-align {
+  text-align: right;
+}
+
+.botao{
+  text-align: center;
+}
+
+input.right-align::-webkit-outer-spin-button,
+input.right-align::-webkit-inner-spin-button {
+  display: none;
+}
+
+input.right-align {
+  -moz-appearance: textfield;
+}
+
+
