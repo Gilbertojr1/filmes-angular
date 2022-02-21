@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Pipe } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { catchError, Observable, of } from 'rxjs';
 
@@ -13,6 +14,9 @@ import { FilmesService } from './../services/filmes.service';
   styleUrls: ['./filmes.component.scss']
 })
 export class FilmesComponent implements OnInit {
+  campoPesquisa = new FormControl();
+  filme!: Filmes;
+
   public labels: any = {
     previousLabel: 'Voltar',
     nextLabel: 'Próximo'
@@ -52,7 +56,14 @@ export class FilmesComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
+  ngOnInit(){
+    this.filmesService.getFilme().subscribe((retornoApi) => {
+      this.filme;
+    })
+  }
+
+  onSearch(){
+    console.log(this.campoPesquisa.value);
 
   }
 }

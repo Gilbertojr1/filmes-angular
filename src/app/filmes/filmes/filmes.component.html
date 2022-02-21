@@ -62,8 +62,26 @@
 </ng-template>
 
 <div class="container" *ngIf="filmes$ | async as filmes; else loading">
-  <mat-toolbar class="toolbar" >Filmes Disponíveis</mat-toolbar>
-  <div class="d-flex flex-wrap">
+  <mat-toolbar class="toolbar">
+    <span>Filmes Disponíveis</span>
+
+    <span class="spacer"></span>
+
+    <div class="d-flex">
+      <input
+      class="form-control me-2 campo-pesquisa"
+      type="search"
+      placeholder="Pesquisar"
+      [formControl]="campoPesquisa"
+      aria-label="Search">
+      <button class="btn btn-outline-success" type="submit" (click)="onSearch()">Pesquisar</button>
+    </div>
+
+    <ng-template #elseBlock><p>Filme não encontrado</p></ng-template>
+
+  </mat-toolbar>
+
+  <div class="d-flex flex-wrap" ng-reaoear>
     <div class="col mb-3" *ngFor=" let filme of filmes | paginate: { itemsPerPage: 6, currentPage: p }" >
         <div class="card h-100 box">
             <div class="card-body" (click)="openDialog(filme)">

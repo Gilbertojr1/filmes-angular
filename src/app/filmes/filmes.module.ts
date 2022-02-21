@@ -1,3 +1,4 @@
+import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -16,7 +17,8 @@ import { FilmesComponent } from './filmes/filmes.component';
     FilmesRoutingModule,
     AppMaterialModule,
     SharedModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    ReactiveFormsModule
   ]
 })
 export class FilmesModule { }
