@@ -21,8 +21,4 @@ export class FilmesService {
       tap(filmes => console.log(filmes))
     );
   }
-
-  getFilme(){
-    return this.httpClient.get<Filmes[]>(this.API);
-  }
 }

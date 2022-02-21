@@ -15,7 +15,6 @@ import { FilmesService } from './../services/filmes.service';
 })
 export class FilmesComponent implements OnInit {
   campoPesquisa = new FormControl();
-  filme!: Filmes;
 
   public labels: any = {
     previousLabel: 'Voltar',
@@ -56,10 +55,8 @@ export class FilmesComponent implements OnInit {
     });
   }
 
-  ngOnInit(){
-    this.filmesService.getFilme().subscribe((retornoApi) => {
-      this.filme;
-    })
+  ngOnInit(): void{
+
   }
 
   onSearch(){
