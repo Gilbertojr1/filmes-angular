@@ -1,3 +1,7 @@
+import { Observable } from 'rxjs';
+
+export interface Filme extends Observable<Filmes> {}
+
 export interface Filmes {
   id: string;
   nome: string;
@@ -7,4 +11,8 @@ export interface Filmes {
   sinopse: string;
   estudio: object;
   categoria: object;
+}
+
+export interface FilmesAPI {
+  payload: Filme;
 }

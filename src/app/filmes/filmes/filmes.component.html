@@ -62,22 +62,22 @@
 </ng-template>
 
 <div class="container" *ngIf="filmes$ | async as filmes; else loading">
+
   <mat-toolbar class="toolbar">
     <span>Filmes Disponíveis</span>
 
     <span class="spacer"></span>
 
-    <div class="d-flex">
+    <div class="d-flex campo-pesquisa">
       <input
-      class="form-control me-2 campo-pesquisa"
+      class="form-control me-2"
       type="search"
       placeholder="Pesquisar"
       [formControl]="campoPesquisa"
       aria-label="Search">
-      <button class="btn btn-outline-success" type="submit" (click)="onSearch()">Pesquisar</button>
     </div>
 
-    <ng-template #elseBlock><p>Filme não encontrado</p></ng-template>
+    <ng-template ><p>Filme não encontrado</p></ng-template>
 
   </mat-toolbar>
 
@@ -103,4 +103,3 @@
     </pagination-controls>
   </div>
 </div>
-
