@@ -28,4 +28,9 @@ export class FilmesService {
       .get<Filmes[]>(this.API, { params })
   }
 
+  getfiltro(valor?: string){
+    const params = valor ? new HttpParams().append('valor', valor) : undefined;
+    return this.httpClient.get<Filmes[]>(this.API + '/filter?nome=' + valor, { params });
+  }
+
 }

@@ -33,27 +33,19 @@ export class FilmesComponent implements OnInit {
     );
   }
 
-  todosfilmes$ = this.filmesService.getFilmes().pipe(
-    tap(() => {
-      console.log('Fluxo Inicial');
-    })
-  );
+  todosfilmes$ = this.filmesService.getfiltro();
 
   filtroPeloInput$ = this.campoPesquisa.valueChanges.pipe(
-    debounceTime(300),
-    tap(() => {
-      console.log('Fluxo do Filtro');
-    }),
-    tap(console.log),
+    debounceTime(100),
     filter(
-      (valorDigitado) => valorDigitado.length >= 3 || !valorDigitado.length
+      (valorDigitado) => valorDigitado.length >= 2 || !valorDigitado.length
     ),
     distinctUntilChanged(),
-    switchMap((valorDigitado) => this.filmesService.getFilmes(valorDigitado)),
-    tap(console.log)
+    switchMap((valorDigitado) => this.filmesService.getfiltro(valorDigitado))
   );
 
   filme$ = merge(this.todosfilmes$, this.filtroPeloInput$);
+
 
   onError(errorMsg: string) {
     this.dialog.open(ErrorDialogComponent, {
