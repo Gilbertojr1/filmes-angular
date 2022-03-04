@@ -61,11 +61,7 @@
   </div>
 </ng-template>
 
-<ng-template #semResult>
-  <p>Filme não encontrado</p>
-</ng-template>
-
-<div class="container" *ngIf="filme$ | async as filmes; else semResult">
+<div class="container" *ngIf="filme$ | async as filmes; else loading">
   <mat-toolbar class="toolbar">
     <span>Filmes Disponíveis</span>
 
@@ -81,7 +77,7 @@
   </mat-toolbar>
 
   <div class="d-flex flex-wrap" ng-reaoear>
-    <div class="col mb-3" *ngFor=" let filme of filmes | paginate: { itemsPerPage: 6, currentPage: p }" >
+    <div class="col posicionamento mb-3" *ngFor=" let filme of filmes | paginate: { itemsPerPage: 9, currentPage: p }" >
         <div class="card h-100 box">
             <div class="card-body" (click)="openDialog(filme)">
                 <div class="poster">
@@ -94,8 +90,16 @@
         </div>
     </div>
   </div>
+  <div class="pags">
+    <pagination-controls
+    (pageChange)="p = $event"
+    [previousLabel]="labels.previousLabel"
+    [nextLabel]="labels.nextLabel">
+    </pagination-controls>
+  </div>
 </div>
 
+<!--
 <div class="container" *ngIf="filmes$ | async as filmes; else loading">
 
   <div class="d-flex flex-wrap" ng-reaoear>
@@ -120,3 +124,4 @@
     </pagination-controls>
   </div>
 </div>
+-->

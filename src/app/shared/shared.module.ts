@@ -5,6 +5,7 @@ import { AppMaterialModule } from './app-material/app-material.module';
 import { ErrorDialogComponent } from './components/error-dialog/error-dialog.component';
 import { CategoriasPipe } from './pipes/categorias.pipe';
 import { DetalhesDialogComponent } from './components/detalhes-dialog/detalhes-dialog.component';
+import { SharedRoutingModule } from './shared-routing.module';
 
 @NgModule({
   declarations: [
@@ -14,11 +15,12 @@ import { DetalhesDialogComponent } from './components/detalhes-dialog/detalhes-d
   ],
   imports: [
     CommonModule,
+    SharedRoutingModule,
     AppMaterialModule
   ],
   exports:[
     ErrorDialogComponent,
-    CategoriasPipe
+    CategoriasPipe,
   ]
 })
 export class SharedModule { }

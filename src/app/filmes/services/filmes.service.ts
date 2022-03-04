@@ -1,9 +1,8 @@
-import { SharedModule } from './../../shared/shared.module';
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { delay, first, tap } from 'rxjs';
 
 import { Filmes } from './../models/filmes';
-import { delay, first, map, pluck, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -22,14 +21,11 @@ export class FilmesService {
     );
   }
 
-  getFilmes(valor?: string) {
-    const params = valor ? new HttpParams().append('valor', valor) : undefined;
-    return this.httpClient
-      .get<Filmes[]>(this.API, { params })
-  }
-
   getfiltro(valor?: string){
     const params = valor ? new HttpParams().append('valor', valor) : undefined;
+    if(valor == null){
+      return this.list();
+    }
     return this.httpClient.get<Filmes[]>(this.API + '/filter?nome=' + valor, { params });
   }
 

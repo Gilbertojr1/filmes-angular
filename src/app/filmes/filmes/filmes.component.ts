@@ -1,7 +1,7 @@
-import { Component, OnInit, Pipe } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { catchError, debounceTime, distinctUntilChanged, filter, merge, Observable, of, switchMap, tap } from 'rxjs';
+import { catchError, debounceTime, distinctUntilChanged, filter, merge, Observable, of, switchMap } from 'rxjs';
 
 import { DetalhesDialogComponent } from './../../shared/components/detalhes-dialog/detalhes-dialog.component';
 import { ErrorDialogComponent } from './../../shared/components/error-dialog/error-dialog.component';
@@ -36,9 +36,9 @@ export class FilmesComponent implements OnInit {
   todosfilmes$ = this.filmesService.getfiltro();
 
   filtroPeloInput$ = this.campoPesquisa.valueChanges.pipe(
-    debounceTime(100),
+    debounceTime(50),
     filter(
-      (valorDigitado) => valorDigitado.length >= 2 || !valorDigitado.length
+      (valorDigitado) => valorDigitado.length >= 1 || !valorDigitado.length
     ),
     distinctUntilChanged(),
     switchMap((valorDigitado) => this.filmesService.getfiltro(valorDigitado))
@@ -46,17 +46,11 @@ export class FilmesComponent implements OnInit {
 
   filme$ = merge(this.todosfilmes$, this.filtroPeloInput$);
 
-
   onError(errorMsg: string) {
     this.dialog.open(ErrorDialogComponent, {
       data: errorMsg
     });
   }
-
-  public labels: any = {
-    previousLabel: 'Voltar',
-    nextLabel: 'Próximo'
-  };
 
   openDialog(filme: Filmes) {
     this.dialog.open(DetalhesDialogComponent, {
@@ -65,6 +59,11 @@ export class FilmesComponent implements OnInit {
       }
     });
   }
+
+  public labels: any = {
+    previousLabel: 'Voltar',
+    nextLabel: 'Próximo'
+  };
 
   p : number = 1;
   pageChanged(event: any){console.log("pageChanged")}

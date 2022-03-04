@@ -1,5 +1,5 @@
 import { Estudio } from './../models/estudio';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { delay, first, tap } from 'rxjs';
 
@@ -7,9 +7,9 @@ import { delay, first, tap } from 'rxjs';
   providedIn: 'root'
 })
 export class EstudioService {
-  private readonly API = '/api/estudios';
-
   constructor(private httpClient: HttpClient) { }
+
+  private readonly API = '/api/estudios';
 
   list() {
     return this.httpClient.get<Estudio[]>(this.API)
@@ -18,5 +18,13 @@ export class EstudioService {
       delay(500),
       tap(estudios => console.log(estudios))
     );
+  }
+
+  getfiltro(valor?: string){
+    const params = valor ? new HttpParams().append('valor', valor) : undefined;
+    if(valor == null){
+      return this.list();
+    }
+    return this.httpClient.get<Estudio[]>(this.API + '/filter?nome=' + valor, { params });
   }
 }
