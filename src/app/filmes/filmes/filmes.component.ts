@@ -38,7 +38,7 @@ export class FilmesComponent implements OnInit {
   filtroPeloInput$ = this.campoPesquisa.valueChanges.pipe(
     debounceTime(50),
     filter(
-      (valorDigitado) => valorDigitado.length >= 1 || !valorDigitado.length
+      (valorDigitado) => valorDigitado.length >= 2 || !valorDigitado.length
     ),
     distinctUntilChanged(),
     switchMap((valorDigitado) => this.filmesService.getfiltro(valorDigitado))

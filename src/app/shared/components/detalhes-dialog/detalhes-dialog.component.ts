@@ -1,7 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
-import { EstudioComponent } from 'src/app/estudio/estudio/estudio.component';
-import { Filmes } from 'src/app/filmes/models/filmes';
 
 @Component({
   selector: 'app-detalhes-dialog',
@@ -17,7 +15,7 @@ export class DetalhesDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.filme);
+    //console.log(this.filme);
   }
 
 }

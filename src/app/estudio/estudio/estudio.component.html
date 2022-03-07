@@ -1,7 +1,6 @@
-
 <mat-card>
   <mat-toolbar color="primary">Estúdios</mat-toolbar>
-  <div *ngIf="estudio$ | async as estudio; else loading">
+  <div *ngIf="estudios$ | async as estudio; else loading">
     <table mat-table [dataSource]="estudio" class="mat-elevation-z8">
 
       <ng-container matColumnDef="id">

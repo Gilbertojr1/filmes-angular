@@ -19,12 +19,11 @@ export class EstudioService {
       tap(estudios => console.log(estudios))
     );
   }
-
-  getfiltro(valor?: string){
+  /*getfiltro(valor?: string){
     const params = valor ? new HttpParams().append('valor', valor) : undefined;
     if(valor == null){
       return this.list();
     }
     return this.httpClient.get<Estudio[]>(this.API + '/filter?nome=' + valor, { params });
-  }
+  }*/
 }

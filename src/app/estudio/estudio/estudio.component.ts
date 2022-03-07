@@ -32,7 +32,7 @@ export class EstudioComponent implements OnInit {
     );
   }
 
-  todosEstudios$ = this.estudioService.getfiltro();
+  /*todosEstudios$ = this.estudioService.getfiltro();
 
   filtroPeloInput$ = this.campoPesquisa.valueChanges.pipe(
     debounceTime(50),
@@ -43,7 +43,7 @@ export class EstudioComponent implements OnInit {
     switchMap((valorDigitado) => this.estudioService.getfiltro(valorDigitado))
   );
 
-  estudio$ = merge(this.todosEstudios$, this.filtroPeloInput$);
+  estudio$ = merge(this.todosEstudios$, this.filtroPeloInput$);*/
 
   onError(errorMsg: string) {
     this.dialog.open(ErrorDialogComponent, {
