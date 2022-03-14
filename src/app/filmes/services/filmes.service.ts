@@ -12,7 +12,7 @@ export class FilmesService {
 
   private readonly API = '/api/filmes';
 
-  list(){
+  getLista(){
     return this.httpClient.get<Filmes[]>(this.API)
     .pipe(
       first(),
@@ -24,7 +24,7 @@ export class FilmesService {
   getfiltro(valor?: string){
     const params = valor ? new HttpParams().append('valor', valor) : undefined;
     if(valor == null){
-      return this.list();
+      return this.getLista();
     }
     return this.httpClient.get<Filmes[]>(this.API + '/filter?nome=' + valor, { params });
   }

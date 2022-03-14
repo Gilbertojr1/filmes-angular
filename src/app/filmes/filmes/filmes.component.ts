@@ -1,3 +1,4 @@
+import { CategoriaService } from './../../categoria/services/categoria.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -7,6 +8,7 @@ import { DetalhesDialogComponent } from './../../shared/components/detalhes-dial
 import { ErrorDialogComponent } from './../../shared/components/error-dialog/error-dialog.component';
 import { Filmes } from './../models/filmes';
 import { FilmesService } from './../services/filmes.service';
+import { Categoria } from 'src/app/categoria/models/categoria';
 
 @Component({
   selector: 'app-filmes',
@@ -17,21 +19,24 @@ export class FilmesComponent implements OnInit {
   campoPesquisa = new FormControl();
 
   filmes$: Observable<Filmes[]>;
+  categoria$: Observable<Categoria[]>;
   displayedColumns = ['id', 'nome', 'data_lancamento', 'diretor', 'duracao', 'sinopse', 'estudio', 'categoria'];
 
   constructor(
     private filmesService: FilmesService,
+    private categoriasService: CategoriaService,
     public dialog: MatDialog
     ) {
+      this.categoria$ = this.categoriasService.list();
 
-    this.filmes$ = this.filmesService.list()
-    .pipe(
-      catchError(error => {
-        this.onError('Erro ao carregar filmes.');
-        return of([])
-      })
-    );
-  }
+      this.filmes$ = this.filmesService.getLista()
+      .pipe(
+        catchError(error => {
+          this.onError('Erro ao carregar filmes.');
+         return of([])
+        })
+      );
+    }
 
   todosfilmes$ = this.filmesService.getfiltro();
 
@@ -73,4 +78,3 @@ export class FilmesComponent implements OnInit {
   }
 
 }
-

@@ -10,13 +10,12 @@
     </figcaption>
   </figure>
 
-  <div mat-dialog-content >{{ filme?.filme?.sinopse }}</div>
+  <div class="texto" mat-dialog-content >{{ filme?.filme?.sinopse }}</div>
 
   <hr>
 
-  <div mat-dialog-content class="btn-group" role="group">
-    <a class="btn btn-light btn-sm" routerLink="/estudios" mat-dialog-close role="button">{{ filme?.filme?.estudio?.nome }}</a>
-    <a class="btn btn-light btn-sm" routerLink="/categorias" mat-dialog-close role="button">{{ filme?.filme?.categoria?.nome }}</a>
+  <div mat-dialog-content>
+    <p><b>Estúdio:</b> {{ filme?.filme?.estudio?.nome }}  |  <b>Categoria:</b> {{ filme?.filme?.categoria?.nome }}</p>
   </div>
 
   <div mat-dialog-actions class="d-grid gap-2 d-md-flex justify-content-md-end">
