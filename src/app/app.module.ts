@@ -2,6 +2,7 @@ import { CommonModule, registerLocaleData } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import localePT from '@angular/common/locales/pt';
 import { CUSTOM_ELEMENTS_SCHEMA, LOCALE_ID, NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -23,6 +24,7 @@ registerLocaleData(localePT);
     MatToolbarModule,
     HttpClientModule,
     CommonModule,
+    FormsModule,
     NgxPaginationModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],

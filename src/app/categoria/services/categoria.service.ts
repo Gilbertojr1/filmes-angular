@@ -13,12 +13,11 @@ export class CategoriaService {
 
   constructor(private httpClient: HttpClient) { }
 
-  list() {
+  getLista() {
     return this.httpClient.get<Categoria[]>(this.API)
     .pipe(
       first(),
-      delay(500),
-      tap(categorias => console.log(categorias))
+      delay(500)
     );
   }
 }

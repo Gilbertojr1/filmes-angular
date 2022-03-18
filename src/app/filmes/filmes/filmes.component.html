@@ -1,4 +1,4 @@
-<!--<mat-card>
+<mat-card>
   <mat-toolbar color="primary">Filmes Disponíveis</mat-toolbar>
   <div *ngIf="filmes$ | async as filmes; else loading">
     <table mat-table [dataSource]="filmes" class="mat-elevation-z8">
@@ -42,7 +42,7 @@
         <th mat-header-cell *matHeaderCellDef> Categoria </th>
         <td mat-cell *matCellDef="let filme"> {{ filme?.categoria?.nome }}
 
-            <mat-icon aria-hidden="false" aria-label="Categoria do Filme">{{ filme.categoria | categorias}}</mat-icon>
+           <!-- <mat-icon aria-hidden="false" aria-label="Categoria do Filme">{{ filme.categoria | categorias}}</mat-icon> -->
 
         </td>
       </ng-container>
@@ -52,58 +52,9 @@
     </table>
   </div>
 </mat-card>
--->
 
 <ng-template #loading>
   <div class="loading-spinner">
     <mat-spinner></mat-spinner>
   </div>
 </ng-template>
-
-<div class="container" *ngIf="filme$ | async as filmes; else loading">
-  <mat-toolbar class="toolbar">
-    <span>Filmes Disponíveis</span>
-
-    <span class="spacer"></span>
-
-    <div class="d-flex select-categoria">
-      <select class="form-select" *ngIf="categoria$ | async as categorias" name="categoria">
-        <option selected>Categorias de Filmes</option>
-        <option *ngFor="let categoria of categorias" [value]="categoria.nome"> {{categoria.nome}}</option>
-      </select>
-    </div>
-
-    <div class="d-flex campo-pesquisa">
-      <input
-      class="form-control me-2"
-      type="search"
-      placeholder="Pesquisar"
-      [formControl]="campoPesquisa"
-      aria-label="Search">
-    </div>
-  </mat-toolbar>
-
-  <div class="d-flex flex-wrap">
-    <div class="mb-4" *ngFor=" let filme of filmes | paginate: { itemsPerPage: 8, currentPage: p }" >
-        <div class="card h-100 box">
-            <div class="card-body" (click)="openDialog(filme)">
-                <div class="poster">
-                  <img src="https://i.pinimg.com/originals/a8/6c/28/a86c2875ddd59391b55112a24345c230.png">
-                </div>
-                <div class="titulo">
-                  <h3 class="card-title">{{ filme.nome }}</h3>
-                </div>
-            </div>
-        </div>
-    </div>
-  </div>
-  <div class="pags">
-    <pagination-controls
-    (pageChange)="p = $event"
-    [previousLabel]="labels.previousLabel"
-    [nextLabel]="labels.nextLabel">
-    </pagination-controls>
-  </div>
-</div>
-
-

@@ -1,13 +1,12 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { delay, first, tap } from 'rxjs';
-
-import { Filmes } from './../models/filmes';
+import { Filmes } from 'src/app/filmes/models/filmes';
 
 @Injectable({
   providedIn: 'root'
 })
-export class FilmesService {
+export class HomeService {
   constructor(private httpClient: HttpClient) { }
 
   private readonly APIF = '/api/filmes';
@@ -36,5 +35,4 @@ export class FilmesService {
     }
     return this.httpClient.get<Filmes[]>(this.APIC + '/filterCategoria?categoria=' + valor, { params });
   }
-
 }

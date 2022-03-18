@@ -21,7 +21,7 @@ export class CategoriaComponent implements OnInit {
     public dialog: MatDialog
   ) {
 
-    this.categoria$ = this.categoriaService.list()
+    this.categoria$ = this.categoriaService.getLista()
     .pipe(
       catchError(error => {
         this.onError('Erro ao carregar categorias.');
