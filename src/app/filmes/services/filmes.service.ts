@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { delay, first, tap } from 'rxjs';
+import { delay, first, take, tap } from 'rxjs';
 
 import { Filmes } from './../models/filmes';
 
@@ -11,7 +11,6 @@ export class FilmesService {
   constructor(private httpClient: HttpClient) { }
 
   private readonly APIF = '/api/filmes';
-  private readonly APIC = '/api/categorias';
 
   getLista(){
     return this.httpClient.get<Filmes[]>(this.APIF)
@@ -21,20 +20,14 @@ export class FilmesService {
     );
   }
 
-  getfiltro(valor?: string){
-    const params = valor ? new HttpParams().append('valor', valor) : undefined;
-    if(valor == null){
-      return this.getLista();
-    }
-    return this.httpClient.get<Filmes[]>(this.APIF + '/filter?nome=' + valor, { params });
+  criandoFilme(data:any) {
+    return this.httpClient.post<Filmes[]>(this.APIF, data).subscribe((result)=>{
+      console.warn("result", result)
+    })
   }
 
-  getfiltroPorCategoria(valor?: string){
-    const params = valor ? new HttpParams().append('valor', valor) : undefined;
-    if(valor == null){
-      return this.getLista();
-    }
-    return this.httpClient.get<Filmes[]>(this.APIC + '/filterCategoria?categoria=' + valor, { params });
+  deleteFilme(_id: any){
+    return this.httpClient.delete<Filmes>(`${this.APIF}/${_id}`).pipe(take(1));
   }
 
 }

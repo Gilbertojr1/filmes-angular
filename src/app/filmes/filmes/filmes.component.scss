@@ -1,26 +1,59 @@
-table {
+.mat-table-main {
   width: 100%;
 }
 
-li {
-  margin-bottom: 5px;
+.mat-column-id{
+  padding-left: 5px;
+  padding-right: 24px;
+  border-right: 1.1px solid black;
+  text-align: center;
 }
 
-.campo-pesquisa{
-  margin-right: 7px;
-  width: 40%;
+.mat-column-nome {
+  padding-left: 1%;
+  padding-right: 1%;
+  width: 10%;
 }
 
-.card{
-  margin: 10px;
+.mat-column-duracao {
+  padding-left: 1%;
+  width: 4%;
 }
 
-.select-categoria{
-  margin-right: 15px;
-  font-size: 16px;
-  display:flex;
-  position:relative;
-  height: 35px;
+.mat-column-sinopse {
+  padding-right: 1%;
+  padding-left: 1%;
+  width: 45%;
+  text-align: justify;
+}
+
+.mat-column-data_lancamento {
+  padding-left: 5px;
+}
+
+.mat-column-diretor {
+  padding-left: 1%;
+}
+
+.mat-column-categoria {
+  padding-left: 5px;
+  padding-right: 7px;
+}
+
+.mat-column-estudio {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.mat-column-acoes {
+  width: 8%;
+  padding-left: 24px;
+  padding-right: 5px;
+
+  font-weight: bold;
+  text-align: center;
+  border-left: 1px dotted black;
+
 }
 
 .loading-spinner{
@@ -40,48 +73,12 @@ li {
   margin: auto;
 }
 
-.pags{
-  text-align: center;
-}
-
-.poster{
-  width: 100%;
-  align-items: center;
-  display: flex;
-  border: 10px;
-}
-
 .toolbar{
   margin-top: 20px;
   margin-bottom: 20px;
   position: sticky;
   top: 0;
   z-index: 99;
-}
-
-.titulo{
-  margin-top: 20px;
-  text-align: center;
-  justify-content: center;
-  font-size: 18px;
-}
-
-.box{
-  width: 250px;
-  margin: 0 10px;
-  box-shadow: 0 0 20px 2px rgba(0, 0, 0, .1);
-  transition: 1s;
-}
-
-.box img{
-  display: block;
-  width: 100%;
-  border-radius: 5px;
-}
-
-.box:hover{
-  transform: scale(1.1);
-  z-index: 2;
 }
 
 .spacer{

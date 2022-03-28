@@ -23,7 +23,7 @@ export class EstudioComponent implements OnInit {
     public dialog: MatDialog,
 
   ) {
-    this.estudios$ = this.estudioService.list()
+    this.estudios$ = this.estudioService.getLista()
     .pipe(
       catchError(error => {
         this.onError('Erro ao carregar categorias.');

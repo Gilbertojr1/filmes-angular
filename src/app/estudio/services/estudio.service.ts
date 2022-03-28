@@ -11,12 +11,11 @@ export class EstudioService {
 
   private readonly API = '/api/estudios';
 
-  list() {
+  getLista() {
     return this.httpClient.get<Estudio[]>(this.API)
     .pipe(
       first(),
-      delay(500),
-      tap(estudios => console.log(estudios))
+      delay(500)
     );
   }
   /*getfiltro(valor?: string){

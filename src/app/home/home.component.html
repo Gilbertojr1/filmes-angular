@@ -1,6 +1,7 @@
 
 <div class="container" *ngIf="filme$ | async as filmes; else loading">
   <mat-toolbar class="toolbar" color="accent">
+
     <!--<span>Filmes Disponíveis</span>-->
 
     <div class="d-flex campo-pesquisa">
@@ -15,17 +16,25 @@
     <span class="spacer"></span>
 
     <div class="d-flex select-categoria">
-      <select class="form-select" *ngIf="categoria$ | async as categorias" name="categoria">
-        <option selected>Categoria</option>
-        <option *ngFor="let categoria of categorias" [value]="categoria.nome"> {{categoria.nome}}</option>
-      </select>
+      <select
+      class="form-select"
+      *ngIf="categoria$ | async as categorias"
+      name="categoria"
+      (ngModelChange)="onCategoria($event)"
+      placeholder="Categoria"
+      [formControl]="campoSelectCategoria">
 
+
+        <option value="null">Categoria</option>
+        <option *ngFor="let categoria of categorias" [value]="categoria.id"> {{categoria.nome}}</option>
+      </select>
     </div>
+
 
   </mat-toolbar>
 
   <div class="d-flex flex-wrap justify-content-around">
-    <div class="mb-4" *ngFor=" let filme of filmes | paginate: { itemsPerPage: 4, currentPage: p }" >
+    <div class="mb-4" *ngFor=" let filme of filmes | paginate: { itemsPerPage: 8, currentPage: p }" >
         <div class="card h-100 box">
             <div class="card-body" (click)="openDialog(filme)">
                 <div class="poster">
