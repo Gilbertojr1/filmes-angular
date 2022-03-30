@@ -20,14 +20,23 @@ export class FilmesService {
     );
   }
 
+  getFilmePorID(id: number){
+    return this.httpClient.get<Filmes>(`${this.APIF}/${id}`).pipe(take(1));
+  }
+
   criandoFilme(data:any) {
     return this.httpClient.post<Filmes[]>(this.APIF, data).subscribe((result)=>{
       console.warn("result", result)
     })
   }
 
-  deleteFilme(_id: any){
-    return this.httpClient.delete<Filmes>(`${this.APIF}/${_id}`).pipe(take(1));
+  atualizarFilme(_id: number, data:any){
+    return this.httpClient.put<Filmes[]>(`${this.APIF}/${_id}`, data).subscribe((result)=>{
+      console.warn("result", result)});
+  }
+
+  deleteFilme(id: any){
+    return this.httpClient.delete<Filmes>(`${this.APIF}/${id}`).pipe(take(1));
   }
 
 }

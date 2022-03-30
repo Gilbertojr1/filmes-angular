@@ -1,3 +1,4 @@
+import { AtualizarFilmesComponent } from './../../shared/components/crud/crud-filmes/atualizar-filmes/atualizar-filmes.component';
 import { AdicionarFilmesComponent } from './../../shared/components/crud/crud-filmes/adicionar-filmes/adicionar-filmes.component';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
@@ -50,12 +51,12 @@ export class FilmesComponent implements OnInit {
 
 
     onOpenUpdateFilmes(id:number){
-      // this.dialog.open(UpdFilmesComponent, {
-      //   data: id
-      // }).afterClosed().subscribe(
-      //   success => this.onRefresh(),
-      //   error => this.onError(error)
-      // );
+      this.dialog.open(AtualizarFilmesComponent, {
+        data: id
+      }).afterClosed().subscribe(
+        success => this.onRefresh(),
+        error => this.onError(error)
+      );
 
     }
 

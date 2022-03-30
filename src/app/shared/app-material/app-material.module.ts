@@ -34,7 +34,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
     MatSelectModule,
     ReactiveFormsModule,
     FormsModule,
-
   ]
 })
 export class AppMaterialModule { }

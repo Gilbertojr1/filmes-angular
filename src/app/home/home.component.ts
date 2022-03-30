@@ -33,11 +33,12 @@ export class HomeComponent implements OnInit {
 
       this.filmes$ = this.filmesService.getLista()
       .pipe(
-        catchError(error => {
+        catchError(_error => {
           this.onError('Erro ao carregar filmes.');
          return of([])
         })
       );
+
     }
 
   todosfilmes$ = this.filmesService.getLista();
@@ -91,8 +92,8 @@ export class HomeComponent implements OnInit {
     // this.filme$ = merge(this.todosfilmes$, filtroCategoria$);
 
     // console.log(this.filtroCategoria$);
-    // console.log(this.filtroPesquisa$);
-    // console.log(this.filme$);
+    // console.log(this.filtroPequisa$);
+    console.log(this.filme$);
   }
 
   public labels: any = {
@@ -101,9 +102,10 @@ export class HomeComponent implements OnInit {
   };
 
   p : number = 1;
-  pageChanged(event: any){console.log("pageChanged")}
+  pageChanged(_event: any){console.log("pageChanged")}
 
   ngOnInit(): void{
+
   }
 
 }

@@ -25,7 +25,7 @@ export class AdicionarFilmesComponent implements OnInit {
   constructor(
     private filmesService: FilmesService,
     private categoriasService: CategoriaService,
-    private EstudioService: EstudioService,
+    private estudioService: EstudioService,
     public dialog: MatDialog
     ) {
 
@@ -39,7 +39,7 @@ export class AdicionarFilmesComponent implements OnInit {
       tap(filmeCategorias$ => console.log(filmeCategorias$))
     );
 
-      this.filmeEstudios$ = this.EstudioService.getLista().
+      this.filmeEstudios$ = this.estudioService.getLista().
       pipe(
       tap(filmeEstudios$ => console.log(filmeEstudios$))
     );
@@ -53,7 +53,7 @@ export class AdicionarFilmesComponent implements OnInit {
 
   onSubmitFilmeAddForm(data:any){
     this.filmeCategorias$ =  this.categoriasService.getLista(),
-    this.filmeEstudios$ = this.EstudioService.getLista()
+    this.filmeEstudios$ = this.estudioService.getLista()
     Swal.fire({
       title: 'Você quer salvar o filme?',
       showDenyButton: true,
@@ -65,15 +65,16 @@ export class AdicionarFilmesComponent implements OnInit {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        this.filmesPost$ = this.filmesService.criandoFilme(data)
+        this.filmesPost$ = this.filmesService.criandoFilme(data);
 
-        console.warn(data)
+        console.warn(data);
 
         Swal.fire('Salvo!', '', 'success');
-        this.closeAllDialogs()
+        this.closeAllDialogs();
 
       } else if (result.isDenied) {
-        Swal.fire('O filme não foi salvo', '', 'info')
+        Swal.fire('O filme não foi salvo', '', 'info');
+        this.closeAllDialogs();
       }
     })
   }

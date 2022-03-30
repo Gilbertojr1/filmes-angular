@@ -8,6 +8,8 @@ import { CategoriasPipe } from './pipes/categorias.pipe';
 import { SharedRoutingModule } from './shared-routing.module';
 import { AdicionarFilmesComponent } from './components/crud/crud-filmes/adicionar-filmes/adicionar-filmes.component';
 import { AtualizarFilmesComponent } from './components/crud/crud-filmes/atualizar-filmes/atualizar-filmes.component';
+import { AdicionarCategoriasComponent } from './components/crud/crud-categorias/adicionar-categorias/adicionar-categorias.component';
+import { AtualizarCategoriasComponent } from './components/crud/crud-categorias/atualizar-categorias/atualizar-categorias.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { AtualizarFilmesComponent } from './components/crud/crud-filmes/atualiza
     CategoriasPipe,
     DetalhesDialogComponent,
     AdicionarFilmesComponent,
-    AtualizarFilmesComponent
+    AtualizarFilmesComponent,
+    AdicionarCategoriasComponent,
+    AtualizarCategoriasComponent
   ],
   imports: [
     CommonModule,

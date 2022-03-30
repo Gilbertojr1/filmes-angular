@@ -33,8 +33,8 @@
 
   </mat-toolbar>
 
-  <div class="d-flex flex-wrap justify-content-around">
-    <div class="mb-4" *ngFor=" let filme of filmes | paginate: { itemsPerPage: 8, currentPage: p }" >
+  <div class="d-flex flex-wrap justify-content-around" *ngIf="filme$; else loading">
+    <div class="mb-4" *ngFor=" let filme of filmes | paginate: { itemsPerPage: 8, currentPage: p }">
         <div class="card h-100 box">
             <div class="card-body" (click)="openDialog(filme)">
                 <div class="poster">

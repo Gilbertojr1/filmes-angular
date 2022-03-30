@@ -2,12 +2,8 @@ table {
   width: 100%;
 }
 
-mat-grid-tile {
-  background: lightblue;
-}
-
-.card{
-  margin: 10px;
+.spacer{
+  flex: 1 1 auto;
 }
 
 .loading-spinner{
