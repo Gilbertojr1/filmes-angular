@@ -1,7 +1,9 @@
+import { Estudio } from 'src/app/estudio/models/estudio';
+import { EstudioService } from 'src/app/estudio/services/estudio.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { catchError, debounceTime, distinctUntilChanged, filter, merge, Observable, of, switchMap } from 'rxjs';
+import { catchError, debounceTime, distinctUntilChanged, filter, isEmpty, merge, Observable, of, switchMap } from 'rxjs';
 
 import { CategoriaService } from '../categoria/services/categoria.service';
 import { Filmes } from '../filmes/models/filmes';
@@ -18,18 +20,24 @@ import { HomeService } from './services/home.service';
 export class HomeComponent implements OnInit {
   campoSearch = new FormControl();
   campoSelectCategoria = new FormControl();
+  campoSelectEstudio = new FormControl();
   selectCategoria!: string;
+  selectEstudio!: string;
 
   filmes$: Observable<Filmes[]>;
   categoria$: Observable<Categoria[]>;
+  estudio$: Observable<Estudio[]>;
   displayedColumns = ['id', 'nome', 'data_lancamento', 'diretor', 'duracao', 'sinopse', 'estudio', 'categoria'];
 
   constructor(
     private filmesService: HomeService,
     private categoriasService: CategoriaService,
+    private estudioService: EstudioService,
     public dialog: MatDialog
     ) {
       this.categoria$ = this.categoriasService.getLista();
+
+      this.estudio$ = this.estudioService.getLista();
 
       this.filmes$ = this.filmesService.getLista()
       .pipe(
@@ -43,30 +51,26 @@ export class HomeComponent implements OnInit {
 
   todosfilmes$ = this.filmesService.getLista();
 
-  filtroPesquisa$ = this.campoSearch.valueChanges.pipe(
+  filtro$ = this.campoSearch.valueChanges.pipe(
     debounceTime(500),
     filter(
       (valorDigitado) => valorDigitado.length >= 1 || !valorDigitado.length
     ),
     distinctUntilChanged(),
-    switchMap((valorDigitado) => this.filmesService.getfiltroPorNome(valorDigitado))
+    switchMap((valorDigitado) => this.filmesService.getfiltroPorNomeCategoriaEstudio(valorDigitado, this.campoSelectCategoria.value, this.campoSelectEstudio.value))
   );
 
-  filtroCategoria$ = this.campoSelectCategoria.valueChanges.pipe(
-    switchMap((categoriaSelect) => this.filmesService.getfiltroPorCategoria(categoriaSelect))
-  );
-
-  // filtro$ = this.campoSearch.valueChanges.pipe(
-  //   debounceTime(50),
-  //   filter(
-  //     (valorDigitado) => valorDigitado.length >= 1 || !valorDigitado.length
-  //   ),
-  //   distinctUntilChanged(),
-  //   switchMap(() => this.filmesService.getfiltroPorNomeECategoria(this.campoSearch.value, this.selectCategoria))
+  // filtroCategoria$ = this.campoSelectCategoria.valueChanges.pipe(
+  //   switchMap((categoriaSelect) => this.filmesService.getfiltroPorCategoria(categoriaSelect))
   // );
 
-  filme$ = merge(this.todosfilmes$, this.filtroCategoria$, this.filtroPesquisa$);
+  // filtroEstudio$ = this.campoSelectEstudio.valueChanges.pipe(
+  //   switchMap((estudioSelect) => this.filmesService.getfiltroPorEstudio(estudioSelect))
+  // );
 
+  // filtro$ = this.filmesService.getfiltroPorNomeCategoriaEstudio(this.campoSearch.value, this.campoSelectCategoria.value, this.campoSelectEstudio.value);
+
+  filme$ = merge(this.todosfilmes$, this.filtro$);
 
   onError(errorMsg: string) {
     this.dialog.open(ErrorDialogComponent, {
@@ -84,16 +88,10 @@ export class HomeComponent implements OnInit {
 
   onCategoria(categoria: string){
     this.selectCategoria = categoria;
+  }
 
-    // const filtroCategoria$ = this.campoSelectCategoria.valueChanges.pipe(
-    //   switchMap((categoriaSelect) => this.filmesService.getfiltroPorCategoria(categoriaSelect))
-    // );
-
-    // this.filme$ = merge(this.todosfilmes$, filtroCategoria$);
-
-    // console.log(this.filtroCategoria$);
-    // console.log(this.filtroPequisa$);
-    console.log(this.filme$);
+  onEstudio(estudio: string){
+    this.selectEstudio = estudio;
   }
 
   public labels: any = {

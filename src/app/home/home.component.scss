@@ -15,7 +15,7 @@ li {
   margin: 10px;
 }
 
-.select-categoria{
+.select-filtro{
   margin-right: 15px;
   font-size: 16px;
   display:flex;
@@ -86,4 +86,10 @@ li {
 
 .spacer{
   flex: 1 1 auto;
+}
+
+.filme-Nao-Encontrado{
+  padding: 50px;
+  text-align: center;
+  font-size: 40px;
 }

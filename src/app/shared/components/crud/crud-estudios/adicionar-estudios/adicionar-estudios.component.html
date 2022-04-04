@@ -1,20 +1,21 @@
 <mat-toolbar color="primary">
-  <span>Altere os dados do categoria</span>
+  <span>Cadastre um estúdio</span>
 </mat-toolbar>
 
 <mat-card>
-  <form #AtualizarCategoriaForm="ngForm" (ngSubmit)="onSubmitCategoriaAtualizarForm(AtualizarCategoriaForm.value)">
+  <form #AddEstudioForm="ngForm" (ngSubmit)="onSubmitEstudioAddForm(AddEstudioForm.value)">
     <mat-form-field class="form-full-width" appearance="outline">
-      <mat-label>Nome do Categoria</mat-label>
+      <mat-label>Nome do Estúdio</mat-label>
       <ng-container >
         <input name="nome" ngModel matInput placeholder="Nome do categoria aqui">
       </ng-container>
     </mat-form-field>
 
     <mat-dialog-actions align="center">
-      <button type="submit" mat-flat-button color="primary" cdkFocusInitial>Salvar Alterações</button>
+      <button type="submit" mat-flat-button color="primary" cdkFocusInitial>Salvar</button>
       <button mat-button mat-dialog-close>Cancelar</button>
     </mat-dialog-actions>
+
   </form>
 
 </mat-card>

@@ -1,29 +1,29 @@
-import { CategoriaService } from 'src/app/categoria/services/categoria.service';
+import { EstudioService } from 'src/app/estudio/services/estudio.service';
+import { Estudio } from 'src/app/estudio/models/estudio';
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Observable, tap } from 'rxjs';
-import { Categoria } from 'src/app/categoria/models/categoria';
-import Swal from 'sweetalert2';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ErrorDialogComponent } from '../../../error-dialog/error-dialog.component';
+import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-atualizar-categorias',
-  templateUrl: './atualizar-categorias.component.html',
-  styleUrls: ['./atualizar-categorias.component.scss']
+  selector: 'app-atualizar-estudios',
+  templateUrl: './atualizar-estudios.component.html',
+  styleUrls: ['./atualizar-estudios.component.scss']
 })
-export class AtualizarCategoriasComponent implements OnInit {
-  categorias$: Observable<Categoria[]>;
-  categoriasAtual$: any;
-  categoriasUpdate$: any;
+export class AtualizarEstudiosComponent implements OnInit {
+  estudios$: Observable<Estudio[]>;
+  estudiosAtual$: any;
+  estudiosUpdate$: any;
 
   constructor(
-    private categoriaService: CategoriaService,
+    private estudioService: EstudioService,
     public dialog: MatDialog,
-    @Inject(MAT_DIALOG_DATA) public categoria_id: number)
+    @Inject(MAT_DIALOG_DATA) public estudio_id: number)
     {
-      this.categorias$ = this.categoriaService.getLista().
+      this.estudios$ = this.estudioService.getLista().
       pipe(
-      tap(categorias$ => console.log(categorias$))
+      tap(estudios$ => console.log(estudios$))
     );
 
     }
@@ -33,9 +33,9 @@ export class AtualizarCategoriasComponent implements OnInit {
     this.dialog.closeAll();
   }
 
-  onSubmitCategoriaAtualizarForm(data:any){
-    console.log("categoria", this.categoria_id)
-    this.categoriasAtual$ = this.categoriaService.getCategoriaPorID(this.categoria_id).subscribe((result)=>
+  onSubmitEstudioAtualizarForm(data:any){
+    console.log("categoria", this.estudio_id)
+    this.estudiosAtual$ = this.estudioService.getEstudioPorID(this.estudio_id).subscribe((result)=>
       console.warn(result)
     )
 
@@ -51,9 +51,9 @@ export class AtualizarCategoriasComponent implements OnInit {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
 
-        this.categoriasUpdate$ = this.categoriaService.atualizarCategoria(this.categoria_id, data)
+        this.estudiosUpdate$ = this.estudioService.atualizarEstudio(this.estudio_id, data)
 
-        console.warn(this.categoria_id)
+        console.warn(this.estudio_id)
         console.warn(data)
 
         Swal.fire('Alterações Salvas!', '', 'success');

@@ -10,6 +10,8 @@ import { AdicionarFilmesComponent } from './components/crud/crud-filmes/adiciona
 import { AtualizarFilmesComponent } from './components/crud/crud-filmes/atualizar-filmes/atualizar-filmes.component';
 import { AdicionarCategoriasComponent } from './components/crud/crud-categorias/adicionar-categorias/adicionar-categorias.component';
 import { AtualizarCategoriasComponent } from './components/crud/crud-categorias/atualizar-categorias/atualizar-categorias.component';
+import { AdicionarEstudiosComponent } from './components/crud/crud-estudios/adicionar-estudios/adicionar-estudios.component';
+import { AtualizarEstudiosComponent } from './components/crud/crud-estudios/atualizar-estudios/atualizar-estudios.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { AtualizarCategoriasComponent } from './components/crud/crud-categorias/
     AdicionarFilmesComponent,
     AtualizarFilmesComponent,
     AdicionarCategoriasComponent,
-    AtualizarCategoriasComponent
+    AtualizarCategoriasComponent,
+    AdicionarEstudiosComponent,
+    AtualizarEstudiosComponent
   ],
   imports: [
     CommonModule,

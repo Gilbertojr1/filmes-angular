@@ -1,9 +1,15 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { catchError, debounceTime, distinctUntilChanged, filter, merge, Observable, of, switchMap } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { catchError, Observable, of } from 'rxjs';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
+import Swal from 'sweetalert2';
 
+import {
+  AdicionarEstudiosComponent,
+} from './../../shared/components/crud/crud-estudios/adicionar-estudios/adicionar-estudios.component';
+import {
+  AtualizarEstudiosComponent,
+} from './../../shared/components/crud/crud-estudios/atualizar-estudios/atualizar-estudios.component';
 import { Estudio } from './../models/estudio';
 import { EstudioService } from './../services/estudio.service';
 
@@ -13,10 +19,9 @@ import { EstudioService } from './../services/estudio.service';
   styleUrls: ['./estudio.component.scss']
 })
 export class EstudioComponent implements OnInit {
-  campoPesquisa = new FormControl();
-
   estudios$: Observable<Estudio[]>;
-  displayedColumns = ['id', 'nome'];
+  displayedColumns = ['id', 'nome', 'acoes'];
+  estudioSelecionado!: Estudio["id"];
 
   constructor(
     private estudioService: EstudioService,
@@ -26,38 +31,78 @@ export class EstudioComponent implements OnInit {
     this.estudios$ = this.estudioService.getLista()
     .pipe(
       catchError(error => {
-        this.onError('Erro ao carregar categorias.');
+        this.onError('Erro ao carregar estúdios.');
         return of([])
       })
     );
   }
 
-  /*todosEstudios$ = this.estudioService.getfiltro();
+  onRefresh(){
+    this.estudios$ = this.estudioService.getLista().pipe(
+      catchError(error =>{
+        console.error(error);
+        this.onError('Erro ao carregar estúdios.')
+        return of([])
+      })
+    )
+  }
 
-  filtroPeloInput$ = this.campoPesquisa.valueChanges.pipe(
-    debounceTime(50),
-    filter(
-      (valorDigitado) => valorDigitado.length >= 1 || !valorDigitado.length
-    ),
-    distinctUntilChanged(),
-    switchMap((valorDigitado) => this.estudioService.getfiltro(valorDigitado))
-  );
+  onOpenAdicionarEstudios(){
+    this.dialog.open(AdicionarEstudiosComponent).afterClosed().subscribe(
+      success => this.onRefresh(),
+      error => this.onError(error)
+    )
+  }
 
-  estudio$ = merge(this.todosEstudios$, this.filtroPeloInput$);*/
+  onOpenAtualizarEstudios(id:number){
+    this.dialog.open(AtualizarEstudiosComponent, {
+      data: id
+    }).afterClosed().subscribe(
+      success => this.onRefresh(),
+      error => this.onError(error)
+    );
+  }
+
+  onDeleteEstudios(id: any){
+    console.log("Estudio", id)
+    this.estudioSelecionado = id;
+    console.log("estudioselecionada", this.estudioSelecionado)
+
+    Swal.fire({
+      title: 'Tem certeza disso?',
+      text: "Essa mudança não pode ser revertida!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sim, deletar!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.estudioService.deleteCategoria(this.estudioSelecionado)
+        .subscribe(
+          success => this.onRefresh(),
+          error => (this.onError('Erro ao deletar!'),
+          Swal.fire(
+            'Erro!',
+            'O estúdio não foi deletado. <br>Provavelmente há algum filme com essa estúdio',
+            'error'
+          ))
+        );
+
+        Swal.fire(
+          'Deletado!',
+          'O estúdio foi deletado',
+          'success'
+        )
+      }
+    })
+  }
 
   onError(errorMsg: string) {
     this.dialog.open(ErrorDialogComponent, {
       data: errorMsg
     });
   }
-
-  public labels: any = {
-    previousLabel: 'Voltar',
-    nextLabel: 'Próximo'
-  };
-
-  p : number = 1;
-  pageChanged(event: any){console.log("pageChanged")}
 
   ngOnInit(): void {
   }

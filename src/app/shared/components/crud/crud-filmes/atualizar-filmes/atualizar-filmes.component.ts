@@ -106,9 +106,9 @@ export class AtualizarFilmesComponent implements OnInit {
 
     // })
 
-    this.filmeForm.setValue({
-      nome: 'TESTE'
-    })
+    // this.filmeForm.setValue({
+    //   nome: 'TESTE'
+    // })
   }
 
 }

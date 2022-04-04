@@ -51,7 +51,7 @@ export class CategoriaComponent implements OnInit {
   }
 
 
-  onOpenUpdateCategorias(id:number){
+  onOpenAtualizarCategorias(id:number){
     this.dialog.open(AtualizarCategoriasComponent, {
       data: id
     }).afterClosed().subscribe(
@@ -62,9 +62,9 @@ export class CategoriaComponent implements OnInit {
   }
 
   onDeleteCategorias(id: any){
-    console.log("filme", id)
+    console.log("Categoria", id)
     this.categoriaSelecionada = id;
-    console.log("filmeselecionado", this.categoriaSelecionada)
+    console.log("categoriaselecionada", this.categoriaSelecionada)
 
     Swal.fire({
       title: 'Tem certeza disso?',
@@ -79,12 +79,17 @@ export class CategoriaComponent implements OnInit {
         this.categoriaService.deleteCategoria(this.categoriaSelecionada)
         .subscribe(
           success => this.onRefresh(),
-          error => this.onError(error)
+          error => (this.onError('Erro ao deletar!'),
+          Swal.fire(
+            'Erro!',
+            'O categoria não foi deletada. <br>Provavelmente há algum filme com essa categoria',
+            'error'
+          ))
         );
 
         Swal.fire(
           'Deletado!',
-          'O filme foi deletado',
+          'O categoria foi deletado',
           'success'
         )
       }

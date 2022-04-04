@@ -50,7 +50,7 @@ export class FilmesComponent implements OnInit {
     }
 
 
-    onOpenUpdateFilmes(id:number){
+    onOpenAtualizarFilmes(id:number){
       this.dialog.open(AtualizarFilmesComponent, {
         data: id
       }).afterClosed().subscribe(

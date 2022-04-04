@@ -15,7 +15,7 @@
 
     <span class="spacer"></span>
 
-    <div class="d-flex select-categoria">
+    <div class="d-flex select-filtro">
       <select
       class="form-select"
       *ngIf="categoria$ | async as categorias"
@@ -30,15 +30,29 @@
       </select>
     </div>
 
+    <div class="d-flex select-filtro">
+      <select
+      class="form-select"
+      *ngIf="estudio$ | async as estudios"
+      name="estudio"
+      (ngModelChange)="onCategoria($event)"
+      placeholder="Estudio"
+      [formControl]="campoSelectEstudio">
+
+
+        <option value="null">Estúdio</option>
+        <option *ngFor="let estudio of estudios" [value]="estudio.id"> {{estudio.nome}}</option>
+      </select>
+    </div>
 
   </mat-toolbar>
 
-  <div class="d-flex flex-wrap justify-content-around" *ngIf="filme$; else loading">
+  <div class="d-flex flex-wrap justify-content-around" *ngIf="(filme$ | async)?.length != 0; else filmeNaoEncontrado">
     <div class="mb-4" *ngFor=" let filme of filmes | paginate: { itemsPerPage: 8, currentPage: p }">
         <div class="card h-100 box">
             <div class="card-body" (click)="openDialog(filme)">
                 <div class="poster">
-                  <img src="https://i.pinimg.com/originals/a8/6c/28/a86c2875ddd59391b55112a24345c230.png">
+                  <img src="https://cinema10.com.br/upload/filmes/filmes_15607_5746772.jpg?default=poster">
                 </div>
                 <div class="titulo">
                   <h3 class="card-title">{{ filme.nome }}</h3>
@@ -59,5 +73,11 @@
 <ng-template #loading>
   <div class="loading-spinner">
     <mat-spinner></mat-spinner>
+  </div>
+</ng-template>
+
+<ng-template #filmeNaoEncontrado>
+  <div class="filme-Nao-Encontrado">
+    <p class="texto">Filme não encontrado!</p>
   </div>
 </ng-template>

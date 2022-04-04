@@ -1,35 +1,34 @@
+import { EstudioService } from 'src/app/estudio/services/estudio.service';
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { Observable, tap } from 'rxjs';
-import { Categoria } from 'src/app/categoria/models/categoria';
-import { CategoriaService } from 'src/app/categoria/services/categoria.service';
+import { Estudio } from 'src/app/estudio/models/estudio';
+import { MatDialog } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
-
 import { ErrorDialogComponent } from '../../../error-dialog/error-dialog.component';
 
 @Component({
-  selector: 'app-adicionar-categorias',
-  templateUrl: './adicionar-categorias.component.html',
-  styleUrls: ['./adicionar-categorias.component.scss']
+  selector: 'app-adicionar-estudios',
+  templateUrl: './adicionar-estudios.component.html',
+  styleUrls: ['./adicionar-estudios.component.scss']
 })
-export class AdicionarCategoriasComponent implements OnInit {
-  categorias$: Observable<Categoria[]>;
+export class AdicionarEstudiosComponent implements OnInit {
+  estudios$: Observable<Estudio[]>;
   categoriasPost$: any;
 
   constructor(
-    private categoriasService: CategoriaService,
+    private estudioService: EstudioService,
     public dialog: MatDialog
   ) {
-    this.categorias$ = this.categoriasService.getLista().
+    this.estudios$ = this.estudioService.getLista().
       pipe(
-      tap(categorias$ => console.log(categorias$))
+      tap(estudios$ => console.log(estudios$))
     );
    }
 
-   onSubmitCategoriaAddForm(data:any){
-    this.categorias$ =  this.categoriasService.getLista();
+   onSubmitEstudioAddForm(data:any){
+    this.estudios$ =  this.estudioService.getLista();
     Swal.fire({
-      title: 'Você quer salvar a categoria?',
+      title: 'Você quer salvar a estúdio?',
       showDenyButton: true,
       showCancelButton: true,
       confirmButtonText: 'Salvar',
@@ -39,7 +38,7 @@ export class AdicionarCategoriasComponent implements OnInit {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        this.categoriasPost$ = this.categoriasService.criandoCategoria(data);
+        this.categoriasPost$ = this.estudioService.criandoEstudio(data);
 
         console.warn(data);
 

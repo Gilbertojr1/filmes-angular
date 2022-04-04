@@ -35,21 +35,25 @@ export class HomeService {
     return this.httpClient.get<Filmes[]>(this.APIF + '/filterCategoria?categoria=' + id, { params });
   }
 
-  getfiltroPorNomeECategoria(nome?: string, categoria?: string){
-    const paramsNome = nome ? new HttpParams().append('nome', nome) : undefined;
-    const paramsCategoria = categoria ? new HttpParams().append('categoria', categoria) : undefined;
-
-    if(nome == null && categoria == null || categoria == 'null' || categoria == ''){
+  getfiltroPorEstudio(id?: string){
+    const params = id ? new HttpParams().append('id', id) : undefined;
+    if(id == null || id == 'null' || id == ''){
       return this.getLista();
     }
-    if(categoria == null){
-      return this.getfiltroPorNome(nome);
-    }
-    if(nome == null){
-     return this.getfiltroPorCategoria(categoria);
+    return this.httpClient.get<Filmes[]>(this.APIF + '/filterEstudio?estudio=' + id, { params });
+  }
+
+  getfiltroPorNomeCategoriaEstudio(nome?: string, categoria?: string, estudio?: string){
+    const paramsNome = nome ? new HttpParams().append('nome', nome) : undefined;
+    const paramsCategoria = categoria ? new HttpParams().append('categoria', categoria) : undefined;
+    const paramsEstudio = estudio ? new HttpParams().append('estudio', estudio) : undefined;
+
+    if(nome == null && categoria == null && estudio == null){
+      return this.getLista();
     }
 
-    return this.httpClient.get<Filmes[]>(this.APIF + '/filterNomeECategoria?nome=' + nome + '&categoria=' + categoria);
+    return this.httpClient.get<Filmes[]>(this.APIF + '/filterNomeCategoriaEstudio?nome=' + nome + '&categoria=' + categoria + '&estudio=' + estudio);
+    // return this.httpClient.get<Filmes[]>(this.APIF + '/filterNomeCategoriaEstudio?nome=&categoria=5&estudio=3');
   }
 
 }

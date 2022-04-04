@@ -1,5 +1,8 @@
 <mat-card>
   <mat-toolbar color="primary">
+    <span class="mx-1">Filmes | </span>
+    <a class="mx-1" mat-flat-button routerLink="/categorias">Categorias</a>
+    <a class="me-1" mat-flat-button routerLink="/estudios">Estudios</a>
     <span class="spacer"></span>
     <button mat-mini-fab color="accent" (click)="onOpenAdicionarFilmes()">
       <mat-icon>add</mat-icon>
@@ -53,10 +56,10 @@
       <ng-container class="ngContain d-flex justify-content-center" matColumnDef="acoes" stickyEnd>
         <th mat-header-cell *matHeaderCellDef>Ações</th>
         <td mat-cell *matCellDef="let filme">
-          <button class="" mat-mini-fab color="accent" (click)="onOpenUpdateFilmes(filme?.id)">
+          <button class="" mat-icon-button color="accent" (click)="onOpenAtualizarFilmes(filme?.id)">
             <mat-icon>build</mat-icon>
           </button>
-          <button class="mx-1" mat-mini-fab color="warn" (click)="onDeleteFilmes(filme?.id)">
+          <button class="mx-1" mat-icon-button color="warn" (click)="onDeleteFilmes(filme?.id)">
             <mat-icon>delete</mat-icon>
           </button>
         </td>
