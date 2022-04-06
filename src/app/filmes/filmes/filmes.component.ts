@@ -2,7 +2,7 @@ import { AtualizarFilmesComponent } from './../../shared/components/crud/crud-fi
 import { AdicionarFilmesComponent } from './../../shared/components/crud/crud-filmes/adicionar-filmes/adicionar-filmes.component';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { catchError, Observable, of } from 'rxjs';
+import { catchError, delay, Observable, of } from 'rxjs';
 
 import { ErrorDialogComponent } from './../../shared/components/error-dialog/error-dialog.component';
 import { Filmes } from './../models/filmes';

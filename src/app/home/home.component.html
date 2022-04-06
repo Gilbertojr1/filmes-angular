@@ -1,4 +1,3 @@
-
 <div class="container" *ngIf="filme$ | async as filmes; else loading">
   <mat-toolbar class="toolbar" color="accent">
 
@@ -20,7 +19,7 @@
       class="form-select"
       *ngIf="categoria$ | async as categorias"
       name="categoria"
-      (ngModelChange)="onCategoria($event)"
+
       placeholder="Categoria"
       [formControl]="campoSelectCategoria">
 
@@ -35,10 +34,9 @@
       class="form-select"
       *ngIf="estudio$ | async as estudios"
       name="estudio"
-      (ngModelChange)="onCategoria($event)"
+
       placeholder="Estudio"
       [formControl]="campoSelectEstudio">
-
 
         <option value="null">Estúdio</option>
         <option *ngFor="let estudio of estudios" [value]="estudio.id"> {{estudio.nome}}</option>

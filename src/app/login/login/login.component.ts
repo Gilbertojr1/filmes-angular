@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { delay } from 'rxjs';
+import Swal from 'sweetalert2';
 
 import { AutenticacaoService } from './../../autenticacao/services/autenticacao.service';
 
@@ -12,20 +15,28 @@ export class LoginComponent implements OnInit {
   usuario = '';
   senha = '';
 
-  constructor(private authService: AutenticacaoService) { }
-
-  ngOnInit(): void {
-  }
+  constructor(private authService: AutenticacaoService,
+    private router: Router) { }
 
   login(){
     this.authService.autenticar(this.usuario, this.senha)
     .subscribe(() => {
-      console.log('Autenticado com sucesso');
+      Swal.fire({
+        title: 'Salvo',
+        timer: 1500,
+        showConfirmButton: false,
+        icon: 'success'
+      });
+      delay(2000);
+      this.router.navigate(['login'])
     },
     (error) => {
-      alert('Usuário ou senha inválido');
+      Swal.fire('Erro!', 'Usuário ou senha inválidos.', 'error')
       console.log(error);
     })
+  }
+
+  ngOnInit(): void {
   }
 
 }

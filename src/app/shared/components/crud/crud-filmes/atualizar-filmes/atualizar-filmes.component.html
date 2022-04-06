@@ -3,17 +3,17 @@
 </mat-toolbar>
 
 <mat-card>
-  <form [formGroup]="filmeForm" #AtualizarFilmeForm="ngForm">
+  <form #AtualizarFilmeForm="ngForm">
     <mat-form-field class="form-full-width" appearance="outline">
       <mat-label>Título do Filme</mat-label>
       <ng-container>
-        <input formControlName="nome" name="nome" matInput placeholder="Título do filme aqui">
+        <input name="nome" ngModel matInput placeholder="Título do filme aqui">
       </ng-container>
     </mat-form-field>
 
     <mat-form-field class="form-full-width" appearance="outline">
       <mat-label>Nome do diretor(a)</mat-label>
-      <input name="diretor" matInput placeholder="Nome do diretor aqui">
+      <input name="diretor" ngModel matInput placeholder="Nome do diretor aqui">
     </mat-form-field>
 
 
@@ -22,7 +22,7 @@
         <ng-container>
           <mat-form-field class="px-1" appearance="outline">
             <mat-label>Data de Lançamento</mat-label>
-              <input name="data_lancamento" matInput [matDatepicker]="picker">
+              <input name="data_lancamento" ngModel matInput [matDatepicker]="picker">
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
@@ -32,14 +32,14 @@
       <div>
         <mat-form-field class="px-1" appearance="outline">
           <mat-label>Duração</mat-label>
-          <input name="duracao" matInput type="number" placeholder="Duração">
+          <input name="duracao" matInput ngModel type="number" placeholder="Duração">
         </mat-form-field>
       </div>
 
       <div>
         <mat-form-field class="px-1" appearance="outline">
           <mat-label>Categoria</mat-label>
-          <mat-select ngDefaultControl name="id_Categoria" placeholder="Selecione uma categoria">
+          <mat-select ngDefaultControl name="id_Categoria" ngModel placeholder="Selecione uma categoria">
               <ng-container *ngFor="let categoria of filmeCategorias$ | async">
                   <mat-option [value]="categoria?.id">{{categoria?.nome}}</mat-option>
               </ng-container>
@@ -50,7 +50,7 @@
       <div>
         <mat-form-field class="px-1" appearance="outline">
           <mat-label>Estudio</mat-label>
-          <mat-select name="id_Estudio" ngDefaultControl placeholder="Selecione um estudio">
+          <mat-select name="id_Estudio" ngDefaultControl ngModel placeholder="Selecione um estudio">
               <ng-container *ngFor="let estudio of filmeEstudios$ | async">
                   <mat-option [value]="estudio?.id">{{estudio?.nome}}</mat-option>
               </ng-container>
@@ -62,7 +62,7 @@
     <mat-form-field class="form-full-width" appearance="outline">
       <mat-label>Sinopse</mat-label>
       <ng-container >
-        <textarea name="sinopse" matInput placeholder="Sinopse aqui"></textarea>
+        <textarea name="sinopse" ngModel matInput placeholder="Sinopse aqui"></textarea>
       </ng-container>
     </mat-form-field>
 

@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Observable, tap } from 'rxjs';
+import { Observable, tap, delay } from 'rxjs';
 import { Categoria } from 'src/app/categoria/models/categoria';
 import { CategoriaService } from 'src/app/categoria/services/categoria.service';
 import { Estudio } from 'src/app/estudio/models/estudio';
@@ -19,7 +19,7 @@ import { ErrorDialogComponent } from '../../../error-dialog/error-dialog.compone
 export class AtualizarFilmesComponent implements OnInit {
 
   filmeForm = new FormGroup({
-    nome: new FormControl(''),
+    nome: new FormControl('Teste'),
   });
 
 
@@ -78,7 +78,6 @@ export class AtualizarFilmesComponent implements OnInit {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-
         this.filmesUpdate$ = this.filmesService.atualizarFilme(this.filme_id, data)
 
         console.warn(this.filme_id)

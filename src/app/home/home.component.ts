@@ -1,9 +1,9 @@
-import { Estudio } from 'src/app/estudio/models/estudio';
-import { EstudioService } from 'src/app/estudio/services/estudio.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { catchError, debounceTime, distinctUntilChanged, filter, isEmpty, merge, Observable, of, switchMap } from 'rxjs';
+import { catchError, debounceTime, distinctUntilChanged, filter, merge, Observable, of, switchMap } from 'rxjs';
+import { Estudio } from 'src/app/estudio/models/estudio';
+import { EstudioService } from 'src/app/estudio/services/estudio.service';
 
 import { CategoriaService } from '../categoria/services/categoria.service';
 import { Filmes } from '../filmes/models/filmes';
@@ -60,17 +60,15 @@ export class HomeComponent implements OnInit {
     switchMap((valorDigitado) => this.filmesService.getfiltroPorNomeCategoriaEstudio(valorDigitado, this.campoSelectCategoria.value, this.campoSelectEstudio.value))
   );
 
-  // filtroCategoria$ = this.campoSelectCategoria.valueChanges.pipe(
-  //   switchMap((categoriaSelect) => this.filmesService.getfiltroPorCategoria(categoriaSelect))
-  // );
+  filtroCategoria$ = this.campoSelectCategoria.valueChanges.pipe(
+    switchMap(() => this.filmesService.getfiltroPorCategoriaEstudio(this.campoSelectCategoria.value, this.campoSelectEstudio.value))
+  );
 
-  // filtroEstudio$ = this.campoSelectEstudio.valueChanges.pipe(
-  //   switchMap((estudioSelect) => this.filmesService.getfiltroPorEstudio(estudioSelect))
-  // );
+   filtroEstudio$ = this.campoSelectEstudio.valueChanges.pipe(
+    switchMap(() => this.filmesService.getfiltroPorCategoriaEstudio(this.campoSelectCategoria.value, this.campoSelectEstudio.value))
+  );
 
-  // filtro$ = this.filmesService.getfiltroPorNomeCategoriaEstudio(this.campoSearch.value, this.campoSelectCategoria.value, this.campoSelectEstudio.value);
-
-  filme$ = merge(this.todosfilmes$, this.filtro$);
+  filme$ = merge(this.todosfilmes$, this.filtro$,  this.filtroCategoria$, this.filtroEstudio$);
 
   onError(errorMsg: string) {
     this.dialog.open(ErrorDialogComponent, {
@@ -84,14 +82,6 @@ export class HomeComponent implements OnInit {
         filme: filme
       }
     });
-  }
-
-  onCategoria(categoria: string){
-    this.selectCategoria = categoria;
-  }
-
-  onEstudio(estudio: string){
-    this.selectEstudio = estudio;
   }
 
   public labels: any = {

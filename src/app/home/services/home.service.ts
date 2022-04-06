@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable, enableProdMode } from '@angular/core';
-import { delay, first, tap } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { delay, first } from 'rxjs';
 import { Filmes } from 'src/app/filmes/models/filmes';
 
 @Injectable({
@@ -19,41 +19,38 @@ export class HomeService {
     );
   }
 
-  getfiltroPorNome(valor?: string){
-    const params = valor ? new HttpParams().append('valor', valor) : undefined;
-    if(valor == null){
-      return this.getLista();
+  getfiltroPorCategoriaEstudio(categoria: string, estudio: string){
+    const params = new HttpParams()
+    .set('categoria', categoria)
+    .set('estudio', estudio);
+
+    if (categoria == "null" || categoria == null){
+      categoria = '';
     }
-    return this.httpClient.get<Filmes[]>(this.APIF + '/filterNome?nome=' + valor, { params });
+    if(estudio == "null" || estudio == null){
+      estudio = '';
+    }
+
+    return this.httpClient.get<Filmes[]>(this.APIF + '/filterCategoriaEstudio?categoria=' + categoria + '&estudio=' + estudio);
   }
 
-  getfiltroPorCategoria(id?: string){
-    const params = id ? new HttpParams().append('id', id) : undefined;
-    if(id == null || id == 'null' || id == ''){
-      return this.getLista();
-    }
-    return this.httpClient.get<Filmes[]>(this.APIF + '/filterCategoria?categoria=' + id, { params });
-  }
-
-  getfiltroPorEstudio(id?: string){
-    const params = id ? new HttpParams().append('id', id) : undefined;
-    if(id == null || id == 'null' || id == ''){
-      return this.getLista();
-    }
-    return this.httpClient.get<Filmes[]>(this.APIF + '/filterEstudio?estudio=' + id, { params });
-  }
-
-  getfiltroPorNomeCategoriaEstudio(nome?: string, categoria?: string, estudio?: string){
-    const paramsNome = nome ? new HttpParams().append('nome', nome) : undefined;
-    const paramsCategoria = categoria ? new HttpParams().append('categoria', categoria) : undefined;
-    const paramsEstudio = estudio ? new HttpParams().append('estudio', estudio) : undefined;
+  getfiltroPorNomeCategoriaEstudio(nome: string, categoria: string, estudio: string){
+    const params = new HttpParams()
+    .set('nome', nome)
+    .set('categoria', categoria)
+    .set('estudio', estudio);
 
     if(nome == null && categoria == null && estudio == null){
       return this.getLista();
     }
+    if (categoria == "null" || categoria == null){
+      categoria = '';
+    }
+    if(estudio == "null" || estudio == null){
+      estudio = '';
+    }
 
     return this.httpClient.get<Filmes[]>(this.APIF + '/filterNomeCategoriaEstudio?nome=' + nome + '&categoria=' + categoria + '&estudio=' + estudio);
-    // return this.httpClient.get<Filmes[]>(this.APIF + '/filterNomeCategoriaEstudio?nome=&categoria=5&estudio=3');
   }
 
 }
