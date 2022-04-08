@@ -1,21 +1,20 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+
+import { ResponseLogin } from '../models/responseLogin';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AutenticacaoService {
+  public loginResponse: ResponseLogin;
 
-  private readonly API = '/auth';
+  public clear(): void{
+    this.loginResponse.token = "";
+    this.loginResponse.tipo = "";
+  }
 
-  constructor(private httpClient: HttpClient) { }
-
-  autenticar(usuario: string, senha: string):Observable<any>{
-    return this.httpClient.post(this.API, {
-      email: usuario,
-      senha: senha
-    });
+  public isAuthenticated():boolean{
+    return Boolean(this.loginResponse?.token && this.loginResponse?.tipo);
   }
 
 }

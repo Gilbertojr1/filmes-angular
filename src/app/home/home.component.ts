@@ -21,8 +21,8 @@ export class HomeComponent implements OnInit {
   campoSearch = new FormControl();
   campoSelectCategoria = new FormControl();
   campoSelectEstudio = new FormControl();
-  selectCategoria!: string;
-  selectEstudio!: string;
+  selectCategoria: string;
+  selectEstudio: string;
 
   filmes$: Observable<Filmes[]>;
   categoria$: Observable<Categoria[]>;

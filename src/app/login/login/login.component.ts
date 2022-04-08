@@ -1,9 +1,11 @@
+import { AlertService } from './../../autenticacao/services/alert.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { delay } from 'rxjs';
-import Swal from 'sweetalert2';
 
-import { AutenticacaoService } from './../../autenticacao/services/autenticacao.service';
+import { SolicitacaoLogin } from './../../autenticacao/models/solicitacaoLogin';
+import { LoginService } from './../services/login.service';
+
+
 
 @Component({
   selector: 'app-login',
@@ -15,28 +17,45 @@ export class LoginComponent implements OnInit {
   usuario = '';
   senha = '';
 
-  constructor(private authService: AutenticacaoService,
+  public solicitacaoLogin: SolicitacaoLogin;
+
+  constructor(private loginService: LoginService,
+    private alertService: AlertService,
     private router: Router) { }
 
-  login(){
-    this.authService.autenticar(this.usuario, this.senha)
-    .subscribe(() => {
-      Swal.fire({
-        title: 'Salvo',
-        timer: 1500,
-        showConfirmButton: false,
-        icon: 'success'
-      });
-      delay(2000);
-      this.router.navigate(['login'])
-    },
-    (error) => {
-      Swal.fire('Erro!', 'Usuário ou senha inválidos.', 'error')
-      console.log(error);
-    })
+  ngOnInit(): void {
+    this.solicitacaoLogin = new SolicitacaoLogin();
   }
 
-  ngOnInit(): void {
+  login(): void{
+    this.loginService.doLogin(this.solicitacaoLogin).subscribe(
+      (data) => {
+        console.log(data);
+      },
+      (error) => {
+        this.alertService.error(error.error, "Login não efetuado")
+        console.error(error);
+      }
+    );
+
+
+
+
+    // this.authService.autenticar(this.usuario, this.senha)
+    // .subscribe(() => {
+    //   Swal.fire({
+    //     title: 'Salvo',
+    //     timer: 1500,
+    //     showConfirmButton: false,
+    //     icon: 'success'
+    //   });
+    //   delay(2000);
+    //   this.router.navigate(['login'])
+    // },
+    // (error) => {
+    //   Swal.fire('Erro!', 'Usuário ou senha inválidos.', 'error')
+    //   console.log(error);
+    // })
   }
 
 }

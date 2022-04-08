@@ -1,17 +1,17 @@
 <div class="container">
   <div class="row justify-content-center">
     <mat-card class="card col-7">
-      <form (ngSubmit)="login()">
+      <form>
         <mat-card-title class="text-center titulo">Login</mat-card-title>
 
         <mat-card-content>
 
           <mat-form-field class="full-width" appearance="fill">
-            <mat-label for="usuario">E-mail</mat-label>
+            <mat-label for="email">E-mail</mat-label>
             <input
-              id="usuario"
-              [(ngModel)]="usuario"
-              name="usuario"
+              id="email"
+              [(ngModel)]="solicitacaoLogin.email"
+              name="email"
               required
               matInput placeholder="usuario@e-mail.com">
           </mat-form-field>
@@ -20,7 +20,7 @@
             <mat-label for="senha">Senha</mat-label>
             <input
               id="senha"
-              [(ngModel)]="senha"
+              [(ngModel)]="solicitacaoLogin.senha"
               name="senha"
               required
               matInput [type]="hide ? 'password' : 'text'">
@@ -29,18 +29,18 @@
             </button>
           </mat-form-field>
 
+          <div class="d-flex justify-content-end">
+            <h4 class="titulo-cadastro"> Não tem conta? </h4>
+            <a class="btn link-cadastro" routerLink="/cadastro" color="primary">Cadastre-se</a>
+          </div>
+
         </mat-card-content>
 
           <mat-card-actions class="botao">
-            <button class="btn btn-primary" type="submit">Entrar</button>
+            <button class="btn btn-primary" (click)="login()" type="submit">Entrar</button>
           </mat-card-actions>
 
       </form>
-
-      <div class="botao-cadastro">
-        <h4><span> Novo aqui? </span></h4>
-        <button class="btn" routerLink="/cadastro" color="primary">Cadastre-se</button>
-      </div>
     </mat-card>
   </div>
 </div>
