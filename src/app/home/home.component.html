@@ -1,8 +1,6 @@
 <div class="container" *ngIf="filme$ | async as filmes; else loading">
   <mat-toolbar class="toolbar" color="accent">
 
-    <!--<span>Filmes Disponíveis</span>-->
-
     <div class="d-flex campo-pesquisa">
       <input
       class="form-control me-2"
@@ -16,13 +14,12 @@
 
     <div class="d-flex select-filtro">
       <select
+      style="font-size: 1rem"
       class="form-select"
       *ngIf="categoria$ | async as categorias"
       name="categoria"
-
       placeholder="Categoria"
       [formControl]="campoSelectCategoria">
-
 
         <option value="null">Categoria</option>
         <option *ngFor="let categoria of categorias" [value]="categoria.id"> {{categoria.nome}}</option>
@@ -31,10 +28,10 @@
 
     <div class="d-flex select-filtro">
       <select
+      style="font-size: 1rem"
       class="form-select"
       *ngIf="estudio$ | async as estudios"
       name="estudio"
-
       placeholder="Estudio"
       [formControl]="campoSelectEstudio">
 
@@ -42,7 +39,6 @@
         <option *ngFor="let estudio of estudios" [value]="estudio.id"> {{estudio.nome}}</option>
       </select>
     </div>
-
   </mat-toolbar>
 
   <div class="d-flex flex-wrap justify-content-around" *ngIf="(filme$ | async)?.length != 0; else filmeNaoEncontrado">
@@ -53,7 +49,7 @@
                   <img src="https://cinema10.com.br/upload/filmes/filmes_15607_5746772.jpg?default=poster">
                 </div>
                 <div class="titulo">
-                  <h3 class="card-title">{{ filme.nome }}</h3>
+                  <h3 class="card-title" style="font-size: 1rem">{{ filme.nome }}</h3>
                 </div>
             </div>
         </div>

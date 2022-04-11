@@ -1,13 +1,14 @@
 <div class="container">
-  <div class="row justify-content-center">
+  <div class="row justify-content-center form-cadastro">
     <mat-card class="card col-7">
       <form #AddUsuarioForm="ngForm" >
-        <mat-card-title class="text-center titulo">Cadastro</mat-card-title>
+        <mat-card-title class="text-center titulo" style="font-size: 1.7rem">Cadastro</mat-card-title>
 
         <mat-card-content>
           <mat-form-field class="full-width" appearance="fill">
-            <mat-label for="nome">Nome de usuário</mat-label>
+            <mat-label for="nome" style="font-size: 1rem">Nome de usuário</mat-label>
             <input
+              style="font-size: 1rem"
               id="nome"
               ngModel
               required
@@ -16,8 +17,9 @@
           </mat-form-field>
 
           <mat-form-field class="full-width" appearance="fill">
-            <mat-label for="email">E-mail</mat-label>
+            <mat-label for="email" style="font-size: 1rem">E-mail</mat-label>
             <input
+              style="font-size: 1rem"
               id="email"
               ngModel
               required
@@ -26,8 +28,9 @@
           </mat-form-field>
 
           <mat-form-field class="full-width" appearance="fill">
-            <mat-label for="senha">Senha</mat-label>
+            <mat-label for="senha" style="font-size: 1rem">Senha</mat-label>
             <input
+              style="font-size: 1rem"
               id="senha"
               ngModel
               required
@@ -37,6 +40,11 @@
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
           </mat-form-field>
+
+          <div class="d-flex justify-content-end">
+            <h4 class="titulo-login" style="font-size: 0.9rem"> Já conta? </h4>
+            <a class="btn link-login" routerLink="/login" color="primary" style="font-size: 0.9rem">Logar</a>
+          </div>
 
         </mat-card-content>
 

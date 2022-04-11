@@ -11,6 +11,7 @@ export class AutenticacaoService {
   public clear(): void{
     this.loginResponse.token = "";
     this.loginResponse.tipo = "";
+    console.log(this.isAuthenticated());
   }
 
   public isAuthenticated():boolean{

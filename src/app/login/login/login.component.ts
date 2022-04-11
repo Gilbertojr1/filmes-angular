@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
   login(): void{
     this.loginService.doLogin(this.solicitacaoLogin).subscribe(
       (data) => {
+        this.router.navigate(['/filmes'])
         console.log(data);
       },
       (error) => {
@@ -38,24 +39,6 @@ export class LoginComponent implements OnInit {
       }
     );
 
-
-
-
-    // this.authService.autenticar(this.usuario, this.senha)
-    // .subscribe(() => {
-    //   Swal.fire({
-    //     title: 'Salvo',
-    //     timer: 1500,
-    //     showConfirmButton: false,
-    //     icon: 'success'
-    //   });
-    //   delay(2000);
-    //   this.router.navigate(['login'])
-    // },
-    // (error) => {
-    //   Swal.fire('Erro!', 'Usuário ou senha inválidos.', 'error')
-    //   console.log(error);
-    // })
   }
 
 }

@@ -64,11 +64,11 @@ export class HomeComponent implements OnInit {
     switchMap(() => this.filmesService.getfiltroPorCategoriaEstudio(this.campoSelectCategoria.value, this.campoSelectEstudio.value))
   );
 
-   filtroEstudio$ = this.campoSelectEstudio.valueChanges.pipe(
+  filtroEstudio$ = this.campoSelectEstudio.valueChanges.pipe(
     switchMap(() => this.filmesService.getfiltroPorCategoriaEstudio(this.campoSelectCategoria.value, this.campoSelectEstudio.value))
   );
 
-  filme$ = merge(this.todosfilmes$, this.filtro$,  this.filtroCategoria$, this.filtroEstudio$);
+  filme$ = merge(this.todosfilmes$, this.filtro$, this.filtroCategoria$, this.filtroEstudio$);
 
   onError(errorMsg: string) {
     this.dialog.open(ErrorDialogComponent, {
