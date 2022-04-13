@@ -22,7 +22,7 @@
       [formControl]="campoSelectCategoria">
 
         <option value="null">Categoria</option>
-        <option *ngFor="let categoria of categorias" [value]="categoria.id"> {{categoria.nome}}</option>
+        <option *ngFor="let categoria of categorias" [value]="categoria.id"> {{ categoria.nome }}</option>
       </select>
     </div>
 
@@ -36,7 +36,7 @@
       [formControl]="campoSelectEstudio">
 
         <option value="null">Estúdio</option>
-        <option *ngFor="let estudio of estudios" [value]="estudio.id"> {{estudio.nome}}</option>
+        <option *ngFor="let estudio of estudios" [value]="estudio.id"> {{ estudio.nome }}</option>
       </select>
     </div>
   </mat-toolbar>

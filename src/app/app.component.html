@@ -1,17 +1,7 @@
 <router-outlet>
-  <mat-toolbar color="accent" class="toolbar-acessibilidade">
-    <span class="spacer"></span>
-    <div>
-      <button mat-mini-fab class="botao" color="basic" (click)="setFontSize('a-')">A-</button>
-      <button mat-mini-fab class="botao" color="basic" (click)="setFontSize('a')">A</button>
-      <button mat-mini-fab class="botao" color="basic" (click)="setFontSize('a+')">A+</button>
-    </div>
-
-  </mat-toolbar>
-
   <mat-toolbar color="primary" class="toolbar">
     <nav class="navbar navbar-dark">
-        <a class="navbar-brand" style="font-size: 1.5rem" routerLink="/">Filmes - Lead</a>
+      <a class="navbar-brand" style="font-size: 1.5rem" routerLink="/">Filmes - Lead</a>
     </nav>
 
     <span class="sepBar" *ngIf="autenticacaoService.isAuthenticated()">|</span>
@@ -20,9 +10,14 @@
 
     <span class="spacer"></span>
 
+    <div class="acessibilidade">
+      <button mat-mini-fab class="botao" color="basic" (click)="setFontSize('a-')">A-</button>
+      <button mat-mini-fab class="botao" color="basic" (click)="setFontSize('a')">A</button>
+      <button mat-mini-fab class="botao" color="basic" (click)="setFontSize('a+')">A+</button>
+    </div>
+
     <button color="" mat-flat-button *ngIf="autenticacaoService.isAuthenticated()" style="font-size: 0.9rem" routerLink="/logout">Sair</button>
     <button color="" mat-flat-button *ngIf="!autenticacaoService.isAuthenticated()" style="font-size: 0.9rem" routerLink="/login">Entrar</button>
 
   </mat-toolbar>
-
 </router-outlet>
