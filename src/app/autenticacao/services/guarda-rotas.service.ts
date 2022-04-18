@@ -9,7 +9,6 @@ export class GuardaRotasService implements CanActivate{
   constructor(private autenticacaoService: AutenticacaoService) { }
 
   canActivate(): boolean {
-    console.log(this.autenticacaoService.isAuthenticated());
     return this.autenticacaoService.isAuthenticated();
   }
 }

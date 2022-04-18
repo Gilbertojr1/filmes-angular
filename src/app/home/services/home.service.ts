@@ -19,6 +19,17 @@ export class HomeService {
     );
   }
 
+  getFiltroPorDiretor(diretor: string){
+    const params = new HttpParams()
+    .set('diretor', diretor);
+
+    if(diretor == null){
+      return this.getLista();
+    }
+
+    return this.httpClient.get<Filmes[]>(this.APIF + '/filterDiretor?diretor=' + diretor);
+  }
+
   getfiltroPorCategoriaEstudio(categoria: string, estudio: string){
     const params = new HttpParams()
     .set('categoria', categoria)

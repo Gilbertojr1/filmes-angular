@@ -68,6 +68,15 @@ export class HomeComponent implements OnInit {
     switchMap(() => this.filmesService.getfiltroPorCategoriaEstudio(this.campoSelectCategoria.value, this.campoSelectEstudio.value))
   );
 
+  filtroDiretor$ = this.campoSearch.valueChanges.pipe(
+    debounceTime(500),
+    filter(
+      (valorDigitado) => valorDigitado.length >= 1 || !valorDigitado.length
+    ),
+    distinctUntilChanged(),
+    switchMap((valorDigitado) => this.filmesService.getFiltroPorDiretor(valorDigitado))
+  );
+
   filme$ = merge(this.todosfilmes$, this.filtro$, this.filtroCategoria$, this.filtroEstudio$);
 
   onError(errorMsg: string) {

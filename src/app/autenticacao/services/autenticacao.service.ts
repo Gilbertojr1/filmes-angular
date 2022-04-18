@@ -9,13 +9,17 @@ export class AutenticacaoService {
   public loginResponse: ResponseLogin;
 
   public clear(): void{
-    this.loginResponse.token = "";
-    this.loginResponse.tipo = "";
-    console.log(this.isAuthenticated());
+    sessionStorage.removeItem('token'),
+    sessionStorage.removeItem('tipo')
   }
 
   public isAuthenticated():boolean{
-    return Boolean(this.loginResponse?.token && this.loginResponse?.tipo);
+    let token = (
+      sessionStorage.getItem('token'),
+      sessionStorage.getItem('tipo')
+    )
+
+    return !(token === null);
   }
 
 }

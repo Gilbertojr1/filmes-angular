@@ -22,7 +22,11 @@ export class LoginService {
       this.API,
       solicitacaoLogin)
       .pipe(
-        tap((loginResponse) => (this.authService.loginResponse = loginResponse))
+        tap((loginResponse) => (
+          sessionStorage.setItem('token', loginResponse.token),
+          sessionStorage.setItem('tipo', loginResponse.tipo)
+          )
+        )
       )
   }
 }
